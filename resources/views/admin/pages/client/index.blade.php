@@ -4,57 +4,70 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
 @endpush
 @section('content')
-    <div class="d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+    <div class="d-flex justify-content-center align-items-center pt-2">
         <div class="container">
-            <div class="d-flex justify-content-between align-items-center mb-4">
+            {{-- <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2 class="fw-bold">Clients</h2>
                 <a href="{{ route('clients.create') }}" class="btn btn-success">New Client</a>
-            </div>
+            </div> --}}
+
+               <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="mb-0 fw-bold">Clients</h2>
+        <p class="text-muted mb-0">Manage your Clients</p>
+    </div>
+    <a href="{{ route('clients.create') }}" class="btn btn-primary-custom">New Client</a>
+</div>
             <div class="row mb-4">
                 <div class="col-md-3">
-                    <div class="card shadow-sm">
+                    <div class="card shadow-none">
                         <div class="card-body">
-                            <h6 class="text-muted">New leads (Past 30 days)</h6>
+                            <h6 class="fw-bold">New leads (Past 30 days)</h6>
                             <h4>{{ $clients->count() ?? 0 }}</h4>
                             {{-- <span class="badge bg-success">↑ 100%</span> --}}
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="card shadow-sm">
+                    <div class="card shadow-none">
                         <div class="card-body">
-                            <h6 class="text-muted">New clients (Past 30 days)</h6>
+                            <h6 class="fw-bold">New clients (Past 30 days)</h6>
                             <h4>{{ $clients->count() ?? 0 }}</h4>
                             {{-- <span class="badge bg-secondary">0%</span> --}}
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="card shadow-sm">
+                    <div class="card shadow-none">
                         <div class="card-body">
-                            <h6 class="text-muted">Total new clients (YTD)</h6>
+                            <h6 class="fw-bold">Total new clients (YTD)</h6>
                             <h4>{{ $clients->count() ?? 0 }}</h4>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="card shadow-sm">
+                    <div class="card shadow-none">
                         <div class="card-body">
-                            <h6 class="text-muted">Tips</h6>
+                            <h6 class="fw-bold">Tips</h6>
                             <p class="small">Want free business advice? <a href="#">Learn more</a></p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="d-flex justify-content-between mb-2">
+            <div class="col-lg-12">
+                <h4 class="fw-bold">Filtered clients
+
+</h4>
+            </div>
+            <div class="d-flex justify-content-between mb-2 pt-4 pb-4">
                 <div>
-                    <button class="btn btn-outline-secondary btn-sm">Filter by tag</button>
-                    <span class="badge bg-light text-dark border">Status: Leads and Active</span>
+                    <button class="btn filter-btn">+ Filter by tag</button>
+                    <span class="btn btn-status">Status: Leads and Active</span>
                 </div>
             </div>
             <div class="table-responsive">
-                <table id="clientsTable" class="table align-middle table-hover">
-                    <thead class="table-light">
+        <table id="clientsTable" class="table table-striped">
+                    <thead class="table bg-white">
                         <tr>
                             <th scope="col">Name</th>
                             <th scope="col">Address</th>
@@ -189,4 +202,47 @@
             });
         });
     </script>
+@endpush
+@push('styles')
+    <style>
+    .filter-btn{
+  font-size: 14px;
+  color: #3b3f5c;
+  font-weight: 700;
+  white-space: normal;
+  word-wrap: break-word;
+  transition: 0.2s ease-out;
+  touch-action: manipulation;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #fff;
+  will-change: opacity, transform;
+  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
+  border:1px solid #d1d5db ;
+  border-radius: 30px;
+    }
+    .btn-status{
+        font-size: 14px;
+  color: #3b3f5c;
+  font-weight: 700;
+  white-space: normal;
+  word-wrap: break-word;
+  transition: 0.2s ease-out;
+  touch-action: manipulation;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #f1f0e9;
+  will-change: opacity, transform;
+  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
+  border:1px solid #d1d5db ;
+  border-radius: 30px;
+    }
+    .btn-primary-custom {
+  background-color: #388523;
+  color:#fff;
+  font-weight: bold;
+}
+</style>
 @endpush

@@ -27,6 +27,63 @@
         .stars {
             color: #fbbf24;
         }
+    
+    .card-no-data{
+        background-image: url('https://secure.getjobber.com/assets_remix/zeroStateBackgroundLight-BZNBrncU.webp');
+        height: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        border: none;
+        box-shadow: none;
+    }   
+    .card-middle{
+        background-color: hsl(45, 20%, 97%);
+        border-radius: 10px;
+        margin: auto;
+        width: 50%;
+    }
+    .card-middle .fa-clipboard-list{
+    color: #388523 !important;
+    }
+
+    .card-heading{
+        color: #111827;
+        font-weight: 700;
+        font-size: 20px;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+    }
+    .card-middle p{
+        font-size: 16px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: 400;
+         color: #111827;
+         padding:10px 40px;
+    }
+    .card{
+        border: none;
+        box-shadow: none
+    }
+
+        .btn-primary-custom {
+            background-color: #388523;
+            border: none;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            margin-right: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: #388523;
+            color: white;
+        }
+
+
     </style>
 @endpush
 
@@ -37,7 +94,7 @@
             <h2 class="mb-0">Quotes</h2>
             <p class="text-muted mb-0">Manage your quotes and estimates</p>
         </div>
-        <a href="{{ route('quotes.create') }}" class="btn btn-primary">
+        <a href="{{ route('quotes.create') }}" class="btn btn-primary-custom">
             <i class="bi bi-plus-circle me-1"></i>
             New Quote
         </a>
@@ -143,14 +200,16 @@
                     {{ $quotes->links() }}
                 </div>
             @else
-                <div class="text-center py-5">
-                    <i class="bi bi-file-earmark-text display-1 text-muted"></i>
-                    <h4 class="mt-3 text-muted">No quotes found</h4>
-                    <p class="text-muted">You haven't created any quotes yet.</p>
-                    <a href="{{ route('quotes.create') }}" class="btn btn-primary">
+                <div class="card-no-data text-center">
+                    <div class="card-middle py-5">
+                      <img src="/img/job.jpg" alt="" height="200px">
+                    <h4 class="card-heading">No quotes found</h4>
+                    <p>You haven't created any quotes yet.</p>
+                    <a href="{{ route('quotes.create') }}" class="btn btn-primary-custom">
                         <i class="bi bi-plus-circle me-1"></i>
                         Create Your First Quote
                     </a>
+                    </div>
                 </div>
             @endif
         </div>

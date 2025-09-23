@@ -19,7 +19,7 @@ const Sidebar = () => {
           <Link
             key={item.name}
             href={item.path}
-            className={`flex items-center gap-3 p-2 rounded-xl transition 
+            className={`transition-color group flex cursor-pointer items-center gap-x-base p-small text-base leading-base text-heading duration-base focus:outline-0 rounded-base data-[status=active]:font-bold data-[status=active]:bg-surface data-[status=active]:hover:bg-surface poi:bg-surface--background--hover active
               ${url.startsWith(item.path) ? "bg-blue-600 text-white" : "hover:bg-gray-800"}`}
           >
             {item.icon}
@@ -31,4 +31,9 @@ const Sidebar = () => {
   );
 };
 
+<style>{`
+  .sidebar {
+    background: #000 !important;
+  }
+`}</style>
 export default Sidebar;

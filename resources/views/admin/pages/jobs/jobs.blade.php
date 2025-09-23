@@ -156,6 +156,15 @@
             gap: 1rem;
             align-items: center;
         }
+         .btn-custom{
+        background-color: #388523;
+        color:#fff;
+    }
+
+       .btn-custom:hover{
+      background-color: #fff;
+      color:#2e6e1c;
+    }
 
         @media (min-width: 768px) {
             .btn-group-custom {
@@ -173,7 +182,7 @@
             <h2 class="mb-0">Jobs</h2>
             <p class="text-muted mb-0">Manage your Jobs</p>
         </div>
-        <a href="{{ route('jobs.create') }}" class="btn btn-primary">
+        <a href="{{ route('jobs.create') }}" class="btn btn-custom">
             <i class="fas fa-plus-circle me-1"></i>
             New Job
         </a>

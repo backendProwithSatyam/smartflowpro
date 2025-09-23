@@ -12,7 +12,7 @@
     .page-title {
         font-size: 2rem;
         font-weight: 700;
-        color: #007bff;
+        color: #276515;
         margin: 0;
         display: flex;
         align-items: center;
@@ -74,7 +74,7 @@
     }
 
     .btn-primary-custom {
-        background-color: #007bff;
+        background-color: #276515;
         border: none;
         color: white;
         padding: 0.75rem 1.5rem;
@@ -84,12 +84,12 @@
     }
 
     .btn-primary-custom:hover {
-        background-color: #0151a7;
+        background-color: #276515;
         color: white;
     }
 
     .btn-secondary-custom {
-        background-color: #6b7280;
+        background-color: #276515;
         border: none;
         color: white;
         padding: 0.75rem 1.5rem;
@@ -150,9 +150,19 @@
     }
 
     .toggle-btn.active {
-        background-color: #007bff;
+        background-color: #276515;
         color: white;
-        border-color: #007bff;
+        border-color: #276515;
+    }
+
+    .btn-custom{
+        background-color: #ffffff;
+        border: 1px solid #276515;
+        color: 276515;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.375rem;
+        font-weight: 500;
+        transition: background-color 0.3s ease;
     }
 
     .product-item {

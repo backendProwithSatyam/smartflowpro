@@ -365,6 +365,7 @@
         </div>
     </section>
     <!-- End of Blogs -->
+
     <!-- Services -->
     <section class="pt-20 pb-90">
         <div class="container">
@@ -391,6 +392,7 @@
         </div>
     </section>
     <!-- End of Services -->
+
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="container text-center">
@@ -401,6 +403,7 @@
             <p class="mt-3">No credit card required.</p>
         </div>
     </section>
+    
     <!-- Packages Wrap -->
     <section class="pt-120 pb-55">
         <div class="container">

@@ -200,7 +200,6 @@
                     <div class="row">
                         <div class="col-md-8">
                             <h3 class="mb-3">Invoice for {{ $client->title }} {{ $client->first_name }} {{ $client->last_name }}</h3>
-                            
                             <div class="client-details">
                                 <div class="row">
                                     <div class="col-md-6">
