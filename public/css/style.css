@@ -927,7 +927,7 @@ label input[type=radio] {
     width: 11px;
     height: 11px;
     border: 1px solid #fff;
-    background: transparent;
+    background: #000;
     opacity: 1;
     vertical-align: middle;
 }
@@ -2565,4 +2565,8 @@ a.tip:hover {
     display: block;
     margin-bottom: 30px;
     padding: 10px 15px;
+}
+
+.btn-primary-custom {
+  background-color: #388523;
 }

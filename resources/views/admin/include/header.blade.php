@@ -1,4 +1,4 @@
-<div class="header-container container-xxl">
+{{-- <div class="header-container container-xxl">
     <header class="header navbar navbar-expand-sm expand-header">
         <ul class="navbar-item theme-brand flex-row  text-center">
             <li class="nav-item theme-text">
@@ -65,5 +65,5 @@
             </li>
         </ul>
     </header>
-</div>
+</div> --}}
 <!--  END NAVBAR  -->

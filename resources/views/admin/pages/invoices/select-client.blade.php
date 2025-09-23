@@ -3,7 +3,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
     <style>
         .client-selection-container {
-            max-width: 800px;
             margin: 0 auto;
             padding: 2rem 0;
         }
@@ -12,8 +11,9 @@
             background: white;
             border-radius: 12px;
             padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
             margin-bottom: 2rem;
+            border:1px solid #dadfe2;
         }
         
         .search-input {
@@ -98,19 +98,36 @@
             color: #6b7280;
         }
         
-        .no-clients i {
+        .no-clients .bi-person-x{
             font-size: 4rem;
             margin-bottom: 1rem;
             color: #d1d5db;
         }
+
+        h1{
+            font-weight: 800;
+            font-size: 36px;
+            color:#032b3a;
+        }
+
+       .btn-custom{
+        background-color: #388523;
+        color:#fff;
+        }
+
+    .btn-custom:hover{
+        background-color: #fff;
+        color:#2e6e1c;
+        }
+
     </style>
 @endpush
 
 @section('content')
 <div class="container">
     <div class="client-selection-container">
-        <div class="text-center mb-4">
-            <h1 class="h2 text-dark mb-3">New Invoice</h1>
+        <div class="mb-4">
+            <h1 class="fw-800">New Invoice</h1>
             <p class="text-muted">Which client would you like to create this invoice for?</p>
         </div>
 
@@ -123,16 +140,14 @@
                     <span class="text-muted">or</span>
                 </div>
                 <div class="col-md-3">
-                    <a href="{{ route('clients.create') }}" class="btn create-client-btn w-100">
+                    <a href="{{ route('clients.create') }}" class="btn btn-custom w-100">
                         <i class="bi bi-plus-circle me-1"></i>
                         Create New Client
                     </a>
                 </div>
-            </div>
-        </div>
+                <div class="col-lg-12">
 
-        <div class="mb-3">
-            <h5 class="text-primary mb-3">Leads</h5>
+            <h5 class="text-primary mb-3 mt-3 fw-bold">Leads</h5>
             <div id="clientList">
                 @if($clients->count() > 0)
                     @foreach($clients as $client)
@@ -159,8 +174,8 @@
                         <i class="bi bi-person-x"></i>
                         <h5>No clients found</h5>
                         <p>You haven't added any clients yet.</p>
-                        <a href="{{ route('clients.create') }}" class="btn btn-primary">
-                            <i class="bi bi-plus-circle me-1"></i>
+                        <a href="{{ route('clients.create') }}" class="btn btn-custom">
+                            <i class="bi bi-plus-circle"></i>
                             Create Your First Client
                         </a>
                     </div>
@@ -171,7 +186,12 @@
                 <h5>No clients found</h5>
                 <p>Try adjusting your search terms.</p>
             </div>
+     
+                </div>
+            </div>
         </div>
+
+     
     </div>
 </div>
 @endsection

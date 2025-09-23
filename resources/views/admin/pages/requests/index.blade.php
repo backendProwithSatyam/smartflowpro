@@ -22,21 +22,73 @@
             padding: 0.25rem 0.5rem;
             font-size: 0.75rem;
         }
+         .btn-primary-custom {
+  background-color: #388523;
+  color:#fff
+}
+.btn-primary-custom:hover{
+    background-color: #fff;
+    color:#388523;
+    border: 1px solid #388523;
+}
+
+ .card-no-data{
+ background-image: url('https://secure.getjobber.com/assets_remix/zeroStateBackgroundLight-BZNBrncU.webp');
+ height: 100%;
+ background-repeat: no-repeat;
+ background-position: center;
+ background-size: cover;
+ border: none;
+ box-shadow: none;
+ }
+ .card{
+    border: none;
+    box-shadow: none;
+ }
+  .card-middle{
+        background-color: hsl(45, 20%, 97%);
+        border-radius: 10px;
+        margin: auto;
+        width: 50%;
+      
+    }
+   
+    .btn-primary-custom{
+        background-color: #388523;
+    }
+
+    .card-heading{
+        color: #111827;
+        font-weight: 700;
+        font-size: 20px;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+    }
+    .card-middle p{
+        font-size: 16px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: 400;
+         color: #111827;
+         padding:10px 40px;
+    }
     </style>
 @endpush
 
 @section('content')
-<div class="container mt-4">
+<div class="container mt-2">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <h2 class="mb-0">Service Requests</h2>
+            <h4 class="mb-0">Service Requests</h4>
             <p class="text-muted mb-0">Manage your service requests</p>
         </div>
-        <a href="{{ route('requests.create') }}" class="btn btn-primary">
+        <a href="{{ route('requests.create') }}" class="btn btn-primary-custom">
             <i class="bi bi-plus-circle me-1"></i>
             New Request
         </a>
     </div>
+      
+        </div>
 
     @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -148,15 +200,18 @@
                     {{ $requests->links() }}
                 </div>
             @else
-                <div class="text-center py-5">
-                    <i class="bi bi-inbox display-1 text-muted"></i>
-                    <h4 class="mt-3 text-muted">No requests found</h4>
-                    <p class="text-muted">You haven't created any service requests yet.</p>
-                    <a href="{{ route('requests.create') }}" class="btn btn-primary">
-                        <i class="bi bi-plus-circle me-1"></i>
-                        Create Your First Request
-                    </a>
-                </div>
+                <div class="card-no-data text-center">
+            <div class="card-middle py-5">
+                  <img src="/img/job.jpg" alt="" height="200px">
+                <h4 class="card-heading">No requests found</h4>
+                <p>You haven't created any service requests yet.</p>
+                <a href="{{ route('requests.create') }}" class="btn btn-primary-custom">
+                    <i class="bi bi-plus-circle me-1"></i>
+                    Create Your First Request
+                </a>
+            </div>
+
+           </div>
             @endif
         </div>
     </div>

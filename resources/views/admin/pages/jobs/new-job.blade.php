@@ -344,7 +344,7 @@
 </div>
 <div class="fixed-bottom-bar">
     <div class="d-flex justify-content-end gap-3">
-        <button type="button" class="btn btn-secondary"
+        <button type="button" class="btn btn-custom"
             onclick="window.location.href='{{ route('jobs.index') }}'">
             Cancel
         </button>

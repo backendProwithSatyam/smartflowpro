@@ -20,14 +20,20 @@
         </div>
         <div class="shadow-bottom"></div>
         <ul class="list-unstyled menu-categories" id="accordionExample">
-            <li class="menu {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+             <li class="{{ request()->routeIs('dashboard') ? 'active' : '' }} logo">
+                <a href="{{route('dashboard')}}" aria-expanded="false" class="dropdown-toggle">
+                  <img src="https://cdn.jobber.com/yr/logos/v1/logo_jobber_bug.svg" alt="" height="30px"> <span>SMFLOW</span>
+                 
+                </a>
+            </li>
+            <li class="menu pt-3 {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                 <a href="{{route('dashboard')}}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-home">
-                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-testid="home" class="sidenav-icon"
+                            style="display: inline-block; vertical-align: middle; width: 24px; height: 24px;">
+                            <path
+                                d="M13.147 3.582a2 2 0 0 0-2.294 0l-9.426 6.599a1 1 0 1 0 1.147 1.638L5 10.121V18a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3v-7.88l2.427 1.7a1 1 0 0 0 1.146-1.64l-9.426-6.598ZM17 8.721V18a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8.72l5-3.5 5 3.5Z"
+                                fill="#000"></path>
                         </svg>
                         <span>Dashboard</span>
                     </div>
@@ -36,85 +42,84 @@
             <li class="menu {{ request()->routeIs('schedule') ? 'active' : '' }}">
                 <a href="{{route('schedule')}}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-calendar">
-                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                            <line x1="16" y1="2" x2="16" y2="6"></line>
-                            <line x1="8" y1="2" x2="8" y2="6"></line>
-                            <line x1="3" y1="10" x2="21" y2="10"></line>
-                        </svg>
-                        <span>Schedule</span>
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-testid="calendar" class="sidenav-icon"
+                         style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;">
+                         <path
+                             d="M15 4a1 1 0 1 1 2 0v1h2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2V4a1 1 0 0 1 2 0v1h6V4ZM5 7v2h14V7H5Zm14 4H5v8h14v-8Z"
+                             fill="#000"></path>
+                     </svg>                        <span>Schedule</span>
                     </div>
                 </a>
             </li>
             <li class="menu {{ request()->routeIs('clients.index') ? 'active' : '' }}">
                 <a href="{{route('clients.index')}}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-users">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                        </svg>
-                        <span>Client</span>
-                    </div>
+     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-testid="clients" class="sidenav-icon"
+         style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;">
+         <path
+             d="M13 14a3.008 3.008 0 0 0-3 2.735c-.01.145.11.265.256.265h5.492c.145 0 .266-.12.25-.265A3.008 3.008 0 0 0 13 14Zm0-1a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"
+             fill="#000"></path>
+         <path
+             d="M4 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H3a1 1 0 1 1 0-2h1v-3H3a1 1 0 1 1 0-2h1V8H3a1 1 0 0 1 0-2h1V5Zm2 0v15h14V5H6Z"
+            fill="#000"></path>
+     </svg>
+     <span>Client</span>
+ </div>
                 </a>
             </li>
             <li class="menu {{ request()->routeIs('jobs.*') ? 'active' : '' }}">
                 <a href="{{route('jobs.index')}}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-briefcase">
-                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                        </svg>
-                        <span>Jobs</span>
-                    </div>
+     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-testid="job" class="sidenav-icon"
+         style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;">
+         <path
+             d="M8.899 5.757A5.99 5.99 0 0 1 13.227 4a5.98 5.98 0 0 1 4.157 1.757L22 10.373l-4.243 4.242-3.479-3.479-1.171 1.172 1.414 1.414-6.693 6.692c-.39.39-.902.586-1.414.586A1.994 1.994 0 0 1 5 20.414L3.586 19A1.994 1.994 0 0 1 3 17.586c0-.512.195-1.024.586-1.414l6.692-6.693 1.414 1.414 1.172-1.171-3.965-3.965Zm8.858 6.03 1.415-1.414L15.97 7.17a3.999 3.999 0 0 0-3.864-1.036l5.651 5.652Zm-6.065 1.935-1.414-1.414L5 17.586 6.414 19l5.278-5.278Z"
+             fill="#000"></path>
+     </svg>
+     <span>Jobs</span>
+ </div>
                 </a>
             </li>
             <li class="menu {{ request()->routeIs('requests.*') ? 'active' : '' }}">
                 <a href="{{route('requests.index')}}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-download-cloud">
-                            <polyline points="8 17 12 21 16 17"></polyline>
-                            <line x1="12" y1="12" x2="12" y2="21"></line>
-                            <path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"></path>
-                        </svg>
-                        <span>Requests</span>
-                    </div>
+     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-testid="request" class="sidenav-icon"
+         style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;">
+         <path
+             d="M12 2a1 1 0 0 0-1 1v5.586L9.707 7.285A.998.998 0 0 0 8 8c.002.253.1.506.293.699l3 3.008a.997.997 0 0 0 1.414 0l3.022-3.293a.996.996 0 0 0 0-1.414.997.997 0 0 0-1.414 0L13 8.586V3a1 1 0 0 0-1-1Z"
+             fill="#000"></path>
+         <path
+             d="M2 5a2 2 0 0 1 2-2h4v2H4v9h5a1 1 0 0 1 .894.553L10.618 16h2.764l.724-1.447A1 1 0 0 1 15 14h5V5h-4V3h4a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5Zm18 11h-4.382l-.724 1.447A1 1 0 0 1 14 18h-4a1 1 0 0 1-.894-.553L8.382 16H4v4h16v-4Z"
+            fill="#000"></path>
+     </svg>
+     <span>Requests</span>
+ </div>
                 </a>
             </li>
             <li class="menu {{ request()->routeIs('quotes.*') ? 'active' : '' }}">
                 <a href="{{route('quotes.index')}}" aria-expanded="false" class="dropdown-toggle">
-                    <div class="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-file-plus">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                            <polyline points="14 2 14 8 20 8"></polyline>
-                            <line x1="12" y1="18" x2="12" y2="12"></line>
-                            <line x1="9" y1="15" x2="15" y2="15"></line>
-                        </svg>
-                        <span>Quotes</span>
-                    </div>
-                </a>
+      <div class="">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-testid="quote" class="sidenav-icon"
+              style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;">
+              <path d="M14 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-2 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0Z"
+                 fill="#000"></path>
+              <path
+                  d="M3.586 6C3.196 6.39 3 6.902 3 7.414c0 .512.195 1.024.586 1.414l.99.991C4.315 10.554 4 11.175 4 12a7 7 0 0 0 7 7h9v1a1 1 0 1 0 2 0v-2a1 1 0 0 0-1-1h-3v-5a7 7 0 0 0-7-7c-.825 0-1.446.314-2.18.577l-.992-.991A1.994 1.994 0 0 0 6.414 4c-.512 0-1.023.195-1.414.586L3.586 6Zm3.393.565A7.041 7.041 0 0 0 5.565 7.98L5 7.414 6.414 6l.565.565ZM11 7a5 5 0 0 1 5 5v5h-5a5 5 0 0 1 0-10Z"
+                  fill="#000"></path>
+          </svg>
+          <span>Quotes</span>
+      </div>
+  </a>
             </li>
             <li class="menu {{ request()->routeIs('invoices.*') ? 'active' : '' }}">
                 <a href="{{route('invoices.index')}}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-dollar-sign">
-                            <line x1="12" y1="1" x2="12" y2="23"></line>
-                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                        </svg>
-                        <span>Invoices</span>
+                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-testid="invoice" class="sidenav-icon"
+                           style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;">
+                           <path
+                               d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.414A2 2 0 0 0 19.414 6L16 2.586A2 2 0 0 0 14.586 2H6Zm0 18V4h8.586L18 7.414V20H6Zm7.293-10.293C12.626 9.04 12.003 9 11.977 9 11.45 9 11 9.45 11 10c0 .646.128.752 1.243 1.03C13.274 11.288 15 11.72 15 14a2.995 2.995 0 0 1-2 2.814v.184a1 1 0 0 1-2 0v-.2a4.502 4.502 0 0 1-1.707-1.09 1 1 0 1 1 1.414-1.415c.667.667 1.291.707 1.317.707.528 0 .976-.448.976-1 0-.646-.127-.75-1.242-1.03C10.728 12.713 9 12.28 9 10a2.996 2.996 0 0 1 2-2.816V7a1 1 0 0 1 2 0v.2a4.49 4.49 0 0 1 1.707 1.093 1 1 0 0 1-1.414 1.414Z"
+                              fill="#000"></path>
+                       </svg>                        <span>Invoices</span>
                     </div>
                 </a>
             </li>
