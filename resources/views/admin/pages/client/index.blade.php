@@ -2,6 +2,12 @@
 @push('styles')
 <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
+<style>
+    .tagify {
+        min-width: 100% !important;
+        min-height: 57px;
+    }
+</style>
 @endpush
 @section('content')
 <div class="d-flex justify-content-center align-items-center pt-2">
