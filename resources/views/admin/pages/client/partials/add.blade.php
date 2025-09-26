@@ -5,15 +5,7 @@
         font-family: 'Inter', sans-serif;
 
     }
-    .form-container {
-        max-width: 100%;
-        margin: 2rem auto;
-        padding: 2rem;
-        background: white;
-        border-radius: 8px;
-        position: relative;
-        padding-bottom: 6rem;
-    }
+  
 
     .section-divider {
         border-top: 1px solid #e9ecef;
@@ -27,18 +19,7 @@
         line-height: 1.5;
     }
 
-    .form-actions-fixed {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 1rem 2rem;
-        background: #f8f9fa;
-        border-top: 1px solid #dee2e6;
-        display: flex;
-        justify-content: flex-end;
-        gap: 1rem;
-    }
+   
 
        .btn-primary-custom {
   background-color: #388523;

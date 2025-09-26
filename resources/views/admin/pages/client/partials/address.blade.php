@@ -1,15 +1,7 @@
 
 @push('styles')
 <style>
- .btn-custom-secondary{
-  background-color: #fff;
-        color:#388523;
-        border: #388523 solid 1px;
-}
-.btn-custom-secondary:hover {
-    background-color: #388523;
-  color:#fff;
-}
+
 </style>
 @endpush
 <div class="address-group p-3 mb-3">

@@ -40,6 +40,10 @@ Route::middleware('auth')->group(function () {
         return view('admin.pages.schedule-calendar');
     })->name('schedule');
 
+    Route::get('/client/view', function () {
+        return view('admin.pages.client.view_client');
+    })->name('clients.view');
+
     // client route
     Route::resource('clients', ClientController::class);
     Route::post('clients/add-tag', [ClientController::class, 'addTag'])->name('clients.addTag');
