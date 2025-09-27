@@ -40,9 +40,9 @@ Route::middleware('auth')->group(function () {
         return view('admin.pages.schedule-calendar');
     })->name('schedule');
 
-    Route::get('/client/view', function () {
-        return view('admin.pages.client.view_client');
-    })->name('clients.view');
+    // Route::get('/client/view', function () {
+    //     return view('admin.pages.client.view_client');
+    // })->name('clients.view');
 
     // client route
     Route::resource('clients', ClientController::class);
