@@ -349,9 +349,9 @@
         <!-- Fixed Bottom Bar -->
         <div class="bottom-bar fixed-bottom-bar">
             <div class="container d-flex justify-content-end gap-2">
-                <button type="button" class="btn btn-secondary"
+                <button type="button" class="btn btn-custom me-2"
                     onclick="window.location.href='{{ route('quotes.index') }}'">Cancel</button>
-                <button type="button" class="btn btn-success" id="saveQuoteBtn">
+                <button type="button" class="btn btn-custom" id="saveQuoteBtn">
                     <span class="btn-text">Save Quote</span>
                     <span class="spinner-border spinner-border-sm d-none" id="loadingSpinner"></span>
                 </button>

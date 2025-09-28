@@ -189,6 +189,7 @@
             <div class="card-no-data">
       <div class="card-middle text-center py-5">
             <img src="/img/job.jpg" alt="" height="200px">
+                 <i class="fas fa-clipboard-list" style="font-size: 55px"></i>
           <h4 class="card-heading">No invoices found</h4>
           <p>You haven't created any invoices yet.</p>
           <a href="{{ route('invoices.create') }}" class="btn btn-primary-custom">

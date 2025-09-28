@@ -24,11 +24,20 @@
 @endphp
 @section('content')
     <div class="container mt-4">
+           <!-- Page Header -->
+        <div class="new-job-page-header">
+            <h1 class="page-title">
+                <i class="fas fa-leaf"></i>{{ isset($serviceRequest) ? 'Edit Request' : 'New Request' }}
+            </h1>
+            {{-- <a href="{{ route('jobs.index') }}" class="back-btn">
+                <i class="fas fa-arrow-left me-2"></i>Back to Jobs
+            </a> --}}
+        </div>
         <div class="card">
-            <div class="card-header d-flex align-items-center">
+            {{-- <div class="card-header d-flex align-items-center">
                 <i class="bi bi-file-earmark-{{ isset($serviceRequest) ? 'text' : 'plus' }} text-warning me-2"></i>
                 <span>{{ isset($serviceRequest) ? 'Edit Request' : 'New Request' }}</span>
-            </div>
+            </div> --}}
             <div class="card-body">
                 <form id="requestForm" enctype="multipart/form-data">
                     @csrf
@@ -267,8 +276,8 @@
     <!-- Fixed Bottom Bar -->
     <div class="bottom-bar">
         <div class="container d-flex justify-content-end gap-2">
-            <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ route('requests.index') }}'">Cancel</button>
-            <button type="button" class="btn btn-success" id="saveRequestBtn">
+            <button type="button" class="btn btn-primary-custom me-2" onclick="window.location.href='{{ route('requests.index') }}'">Cancel</button>
+            <button type="button" class="btn btn-custom-secondary" id="saveRequestBtn">
                 <span class="btn-text">{{ isset($serviceRequest) ? 'Update Request' : 'Save Request' }}</span>
                 <span class="spinner-border spinner-border-sm d-none" id="loadingSpinner"></span>
             </button>

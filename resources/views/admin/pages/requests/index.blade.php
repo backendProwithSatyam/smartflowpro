@@ -203,6 +203,7 @@
                 <div class="card-no-data text-center">
             <div class="card-middle py-5">
                   <img src="/img/job.jpg" alt="" height="200px">
+                       <i class="fas fa-clipboard-list" style="font-size: 55px"></i>
                 <h4 class="card-heading">No requests found</h4>
                 <p>You haven't created any service requests yet.</p>
                 <a href="{{ route('requests.create') }}" class="btn btn-primary-custom">

@@ -111,7 +111,7 @@
                         <span class="badge bg-info text-dark">{{ trim($tag) }}</span>
                         @endforeach
                         @else
-                        <span class="text-muted">-</span>
+                        <span class="text-muted">test</span>
                         @endif
                     </td>
                     <td class="text-center">
@@ -221,7 +221,46 @@
             }
         });
     });
+
+    
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    let table = document.getElementById("clientsTable").getElementsByTagName("tbody")[0];
+
+    // Status filter
+    document.querySelectorAll("#dropdownMenuStatus input[type=checkbox]").forEach(cb => {
+        cb.addEventListener("change", function () {
+            applyFilters();
+        });
+    });
+
+    // Tag search filter
+    document.querySelector("#dropdownMenuTag input").addEventListener("keyup", function () {
+        applyFilters();
+    });
+
+    function applyFilters() {
+        let selectedStatuses = Array.from(document.querySelectorAll("#dropdownMenuStatus input[type=checkbox]:checked")).map(cb => cb.parentNode.textContent.trim().toLowerCase());
+        let tagSearch = document.querySelector("#dropdownMenuTag input").value.toLowerCase();
+
+        Array.from(table.rows).forEach(row => {
+            let statusText = row.querySelector("td:nth-child(4)")?.innerText.toLowerCase();
+            let tagsText = row.querySelector("td:nth-child(3)")?.innerText.toLowerCase();
+
+            let statusMatch = selectedStatuses.length === 0 || selectedStatuses.some(s => statusText.includes(s));
+            let tagMatch = tagSearch === "" || (tagsText && tagsText.includes(tagSearch));
+
+            if (statusMatch && tagMatch) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        });
+    }
+});
+</script>
+
 <script>
     function toggleDropdown() {
         document.getElementById("dropdownMenu").classList.toggle("show");
@@ -329,9 +368,101 @@
         });
     });
 </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Toggle dropdown open/close
+    window.toggleDropdown = function(id) {
+        let dropdown = document.getElementById(id);
+        dropdown.classList.toggle("show");
+    };
+
+    // Prevent dropdown close when typing inside input
+    document.querySelectorAll(".dropdown-content input").forEach(input => {
+        input.addEventListener("click", function (e) {
+            e.stopPropagation();
+        });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", function (e) {
+        if (!e.target.closest(".dropdown")) {
+            document.querySelectorAll(".dropdown-content").forEach(menu => menu.classList.remove("show"));
+        }
+    });
+
+    // ---------------- FILTER LOGIC ----------------
+    let table = document.querySelector("#clientsTable tbody");
+
+    // Tag search filter
+    document.querySelector("#dropdownMenuTag input").addEventListener("keyup", function () {
+        applyFilters();
+    });
+
+    // Status filter
+    document.querySelectorAll("#dropdownMenuStatus input[type=checkbox]").forEach(cb => {
+        cb.addEventListener("change", function () {
+            applyFilters();
+        });
+    });
+
+    function applyFilters() {
+        let selectedStatuses = Array.from(document.querySelectorAll("#dropdownMenuStatus input[type=checkbox]:checked"))
+            .map(cb => cb.parentNode.textContent.trim().toLowerCase());
+
+        let tagSearch = document.querySelector("#dropdownMenuTag input").value.toLowerCase();
+
+        Array.from(table.rows).forEach(row => {
+            let statusText = row.querySelector("td:nth-child(4)")?.innerText.toLowerCase();
+            let tagsText = row.querySelector("td:nth-child(3)")?.innerText.toLowerCase();
+
+            let statusMatch = selectedStatuses.length === 0 || selectedStatuses.some(s => statusText.includes(s));
+            let tagMatch = tagSearch === "" || (tagsText && tagsText.includes(tagSearch));
+
+            if (statusMatch && tagMatch) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        });
+    }
+});
+</script>
+
 @endpush
 @push('styles')
 <style>
-   
+   .dropdown-content {
+    display: none;
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    z-index: 1000;
+}
+.dropdown-content.show {
+    display: block;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    z-index: 1000;
+    width: 200px;
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+
 </style>
 @endpush

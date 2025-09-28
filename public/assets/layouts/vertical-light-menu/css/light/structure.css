@@ -1598,6 +1598,9 @@ text-align: center;
         border: none;
         box-shadow: none;
     }   
+   .card-middle i{
+  display:none;
+}
     .card-middle{
         background-color: hsl(45, 20%, 97%);
         border-radius: 10px;
