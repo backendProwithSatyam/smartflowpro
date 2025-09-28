@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\FormFieldController;
 
 Route::get('/', function () {
     // return Inertia::render('Welcome', [
@@ -46,6 +47,7 @@ Route::middleware('auth')->group(function () {
 
     // client route
     Route::resource('clients', ClientController::class);
+    Route::resource('form-fields', FormFieldController::class);
     Route::post('clients/add-tag', [ClientController::class, 'addTag'])->name('clients.addTag');
     Route::resource('tax-rates', TaxRateController::class)->except(['show']);
 
