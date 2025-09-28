@@ -1533,6 +1533,9 @@ display: none;
 }
 }
 @media (max-width: 575px) {
+      .ms-lg-auto {
+        margin-left: auto !important;
+    }
 .navbar .navbar-item .nav-item.dropdown.message-dropdown .dropdown-menu {
 right: auto;
 left: -76px !important;
