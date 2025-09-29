@@ -857,7 +857,7 @@ body.dark .btn {
   padding: 0.4375rem 1.25rem;
   text-shadow: none;
   font-size: 14px;
-  color: #3b3f5c;
+  color: #fff;
   font-weight: normal;
   white-space: normal;
   word-wrap: break-word;
@@ -865,7 +865,7 @@ body.dark .btn {
   touch-action: manipulation;
   border-radius: 6px;
   cursor: pointer;
-  background-color: #f1f2f3;
+  background-color: #276515;
   box-shadow: 0px 5px 20px 0 rgba(0, 0, 0, 0.1);
   will-change: opacity, transform;
   transition: all 0.3s ease-out;
@@ -3019,9 +3019,9 @@ body.dark .bg-danger {
   color: #fff;
 }
 body.dark .bg-secondary {
-  background-color: #805dca !important;
+  background-color: #4361ee42 !important;
   border-color: #805dca;
-  color: #fff;
+  color: #fff !important;
 }
 body.dark .bg-dark {
   background-color: #3b3f5c !important;

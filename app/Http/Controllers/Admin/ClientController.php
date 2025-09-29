@@ -16,6 +16,15 @@ class ClientController extends Controller
         return view('admin.pages.client.index', compact('clients'));
     }
 
+public function show(Client $client)
+{
+    $client->load(['addresses', 'properties']); // addresses aur properties dono
+    return view('admin.pages.client.view_client', compact('client'));
+    // return view('admin.pages.client.view_client', compact('client'));
+}
+
+
+
     public function create()
     {
         // dd(111);

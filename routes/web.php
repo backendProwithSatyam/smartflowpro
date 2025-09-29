@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\FormFieldController;
 
 Route::get('/', function () {
     // return Inertia::render('Welcome', [
@@ -40,12 +41,13 @@ Route::middleware('auth')->group(function () {
         return view('admin.pages.schedule-calendar');
     })->name('schedule');
 
-    Route::get('/client/view', function () {
-        return view('admin.pages.client.view_client');
-    })->name('clients.view');
+    // Route::get('/client/view', function () {
+    //     return view('admin.pages.client.view_client');
+    // })->name('clients.view');
 
     // client route
     Route::resource('clients', ClientController::class);
+    Route::resource('form-fields', FormFieldController::class);
     Route::post('clients/add-tag', [ClientController::class, 'addTag'])->name('clients.addTag');
     Route::resource('tax-rates', TaxRateController::class)->except(['show']);
 

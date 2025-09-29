@@ -21,6 +21,7 @@
 <div class="card">
     <div class="text-center py-5 card-middle">
         <img src="/img/job.jpg" alt="" height="200px">
+              <i class="fas fa-clipboard-list" style="font-size: 55px"></i>
         <h3 class="card-heading">Create winning jobs</h3>
         <p>Build Residential Cleaning quotes in seconds with tailored descriptions and line items that will help you win
             work.</p>

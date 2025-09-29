@@ -12,11 +12,10 @@
 @section('content')
 <div class="d-flex justify-content-center align-items-center pt-2">
     <div class="container">
-        {{-- <div class="d-flex justify-content-between align-items-center mb-4">
+        {{--<div class="d-flex justify-content-between align-items-center mb-4">
                 <h2 class="fw-bold">Clients</h2>
                 <a href="{{ route('clients.create') }}" class="btn btn-success">New Client</a>
-    </div> --}}
-
+    </div>--}}
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
             <h2 class="mb-0 fw-bold">Clients</h2>
@@ -65,35 +64,33 @@
 
         </h4>
     </div>
-  <div class="d-flex justify-content-start mb-2 pt-4 pb-4">
-    <!-- Filter by tag -->
-    <div class="filter-container me-2">
-        <div class="dropdown">
-            <button onclick="toggleDropdown('dropdownMenuTag')" class="filter-btn">Filter by tag +</button>
-            <div id="dropdownMenuTag" class="dropdown-content">
-                <input type="text" placeholder="Search tags">
-                <p>You don't have any tags yet</p>
+    <div class="d-flex justify-content-start mb-2 pt-4 pb-4">
+        <!-- Filter by tag -->
+        <div class="filter-container me-2">
+            <div class="dropdown">
+                <button onclick="toggleDropdown('dropdownMenuTag')" class="filter-btn">Filter by tag +</button>
+                <div id="dropdownMenuTag" class="dropdown-content">
+                    <input type="text" placeholder="Search tags">
+                    <p>You don't have any tags yet</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status -->
+        <div class="filter-container">
+            <div class="dropdown">
+                <button onclick="toggleDropdown('dropdownMenuStatus')" class="btn btn-status">
+                    Status: Leads and Active
+                </button>
+                <div id="dropdownMenuStatus" class="dropdown-content">
+                    <p><input type="checkbox"> Leads</p>
+                    <p><input type="checkbox"> Active</p>
+                    <p><input type="checkbox"> Inactive</p>
+                    <p><input type="checkbox"> Converted</p>
+                </div>
             </div>
         </div>
     </div>
-
-    <!-- Status -->
-    <div class="filter-container">
-        <div class="dropdown">
-            <button onclick="toggleDropdown('dropdownMenuStatus')" class="btn btn-status">
-                Status: Leads and Active
-            </button>
-            <div id="dropdownMenuStatus" class="dropdown-content">
-                <p><input type="checkbox"> Leads</p>
-                <p><input type="checkbox"> Active</p>
-                <p><input type="checkbox"> Inactive</p>
-                <p><input type="checkbox"> Converted</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-
     <div class="table-responsive">
         <table id="clientsTable" class="table">
             <thead>
@@ -120,7 +117,7 @@
                         <span class="badge bg-info text-dark">{{ trim($tag) }}</span>
                         @endforeach
                         @else
-                        <span class="text-muted">-</span>
+                        <span class="text-muted">test</span>
                         @endif
                     </td>
                     <td class="text-center">
@@ -161,7 +158,7 @@
                             </button>
 
                             <!-- More / three dots -->
-                            <a href="{{route('clients.view')}}" title="View" class="action-view">
+                            <a href="{{route('clients.show', $client->id)}}" title="View" class="action-view">
                                 <svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M8 3C3.5 3 1 8 1 8s2.5 5 7 5 7-5 7-5-2.5-5-7-5zM8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
@@ -230,7 +227,46 @@
             }
         });
     });
+
+    
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    let table = document.getElementById("clientsTable").getElementsByTagName("tbody")[0];
+
+    // Status filter
+    document.querySelectorAll("#dropdownMenuStatus input[type=checkbox]").forEach(cb => {
+        cb.addEventListener("change", function () {
+            applyFilters();
+        });
+    });
+
+    // Tag search filter
+    document.querySelector("#dropdownMenuTag input").addEventListener("keyup", function () {
+        applyFilters();
+    });
+
+    function applyFilters() {
+        let selectedStatuses = Array.from(document.querySelectorAll("#dropdownMenuStatus input[type=checkbox]:checked")).map(cb => cb.parentNode.textContent.trim().toLowerCase());
+        let tagSearch = document.querySelector("#dropdownMenuTag input").value.toLowerCase();
+
+        Array.from(table.rows).forEach(row => {
+            let statusText = row.querySelector("td:nth-child(4)")?.innerText.toLowerCase();
+            let tagsText = row.querySelector("td:nth-child(3)")?.innerText.toLowerCase();
+
+            let statusMatch = selectedStatuses.length === 0 || selectedStatuses.some(s => statusText.includes(s));
+            let tagMatch = tagSearch === "" || (tagsText && tagsText.includes(tagSearch));
+
+            if (statusMatch && tagMatch) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        });
+    }
+});
+</script>
+
 <script>
     function toggleDropdown() {
         document.getElementById("dropdownMenu").classList.toggle("show");
@@ -247,29 +283,28 @@
             }
         }
     }
-    function toggleDropdown(id) {
-    // sabhi dropdown band karo pehle
-    let dropdowns = document.getElementsByClassName("dropdown-content");
-    for (let i = 0; i < dropdowns.length; i++) {
-        dropdowns[i].classList.remove("show");
-    }
-    // jis button pe click hua uska dropdown open karo
-    document.getElementById(id).classList.toggle("show");
-}
 
-// dropdown band karna agar bahar click kare
-window.onclick = function(event) {
-    if (!event.target.matches('.filter-btn') && !event.target.matches('.btn-status')) {
+    function toggleDropdown(id) {
+        // sabhi dropdown band karo pehle
         let dropdowns = document.getElementsByClassName("dropdown-content");
         for (let i = 0; i < dropdowns.length; i++) {
-            let openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
+            dropdowns[i].classList.remove("show");
+        }
+        // jis button pe click hua uska dropdown open karo
+        document.getElementById(id).classList.toggle("show");
+    }
+    // dropdown band karna agar bahar click kare
+    window.onclick = function(event) {
+        if (!event.target.matches('.filter-btn') && !event.target.matches('.btn-status')) {
+            let dropdowns = document.getElementsByClassName("dropdown-content");
+            for (let i = 0; i < dropdowns.length; i++) {
+                let openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
             }
         }
     }
-}
-
     $(document).ready(function() {
         let table = $('#clientsTable').DataTable({
             pageLength: 5,
@@ -339,207 +374,95 @@ window.onclick = function(event) {
         });
     });
 </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Toggle dropdown open/close
+    window.toggleDropdown = function(id) {
+        let dropdown = document.getElementById(id);
+        dropdown.classList.toggle("show");
+    };
+
+    // Prevent dropdown close when typing inside input
+    document.querySelectorAll(".dropdown-content input").forEach(input => {
+        input.addEventListener("click", function (e) {
+            e.stopPropagation();
+        });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", function (e) {
+        if (!e.target.closest(".dropdown")) {
+            document.querySelectorAll(".dropdown-content").forEach(menu => menu.classList.remove("show"));
+        }
+    });
+
+    // ---------------- FILTER LOGIC ----------------
+    let table = document.querySelector("#clientsTable tbody");
+
+    // Tag search filter
+    document.querySelector("#dropdownMenuTag input").addEventListener("keyup", function () {
+        applyFilters();
+    });
+
+    // Status filter
+    document.querySelectorAll("#dropdownMenuStatus input[type=checkbox]").forEach(cb => {
+        cb.addEventListener("change", function () {
+            applyFilters();
+        });
+    });
+
+    function applyFilters() {
+        let selectedStatuses = Array.from(document.querySelectorAll("#dropdownMenuStatus input[type=checkbox]:checked"))
+            .map(cb => cb.parentNode.textContent.trim().toLowerCase());
+
+        let tagSearch = document.querySelector("#dropdownMenuTag input").value.toLowerCase();
+
+        Array.from(table.rows).forEach(row => {
+            let statusText = row.querySelector("td:nth-child(4)")?.innerText.toLowerCase();
+            let tagsText = row.querySelector("td:nth-child(3)")?.innerText.toLowerCase();
+
+            let statusMatch = selectedStatuses.length === 0 || selectedStatuses.some(s => statusText.includes(s));
+            let tagMatch = tagSearch === "" || (tagsText && tagsText.includes(tagSearch));
+
+            if (statusMatch && tagMatch) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        });
+    }
+});
+</script>
+
 @endpush
 @push('styles')
 <style>
-    .filter-btn {
-        font-size: 14px;
-        color: #3b3f5c;
-        font-weight: 700;
-        white-space: normal;
-        word-wrap: break-word;
-        transition: 0.2s ease-out;
-        touch-action: manipulation;
-        border-radius: 6px;
-        cursor: pointer;
-        background-color: #fff;
-        will-change: opacity, transform;
-        transition: all 0.3s ease-out;
-        -webkit-transition: all 0.3s ease-out;
-        border: 1px solid #d1d5db;
-        border-radius: 30px;
-    }
-
-    .btn-status {
-        font-size: 14px;
-        color: #3b3f5c;
-        font-weight: 700;
-        white-space: normal;
-        word-wrap: break-word;
-        transition: 0.2s ease-out;
-        touch-action: manipulation;
-        border-radius: 6px;
-        cursor: pointer;
-        background-color: #f1f0e9;
-        will-change: opacity, transform;
-        transition: all 0.3s ease-out;
-        -webkit-transition: all 0.3s ease-out;
-        border: 1px solid #d1d5db;
-        border-radius: 30px;
-    }
-
-    .btn-primary-custom {
-        background-color: #388523;
-        color: #fff;
-        font-weight: bold;
-    }
-
-    #clientsTable thead th {
-        border: none !important;
-    }
-
-    /* Table header style */
-    #clientsTable thead th {
-        background-color: #fff;
-        color: #000;
-        border-bottom: 2px solid #dee2e6;
-
-    }
-
-    /* tbody rows ka border-bottom */
-    #clientsTable tbody td {
-        border-bottom: 1px solid #dee2e6;
-        vertical-align: middle;
-    }
-
-    /* hover effect */
-    #clientsTable tbody tr:hover {
-        background-color: #f8f9fa;
-    }
-
-    /* Checkbox initially hidden */
-    #clientsTable .row-checkbox {
-        display: none;
-        margin-right: 6px;
-    }
-
-    /* Show checkbox on hover */
-    #clientsTable tbody tr:hover .row-checkbox {
-        display: inline-block;
-    }
-
-    #clientsTable thead th {
-        border-bottom: 2px solid rgba(0, 0, 0, 0.107) !important;
-    }
-
-    #clientsTable thead th {
-        color: #000000a8 !important;
-        font-weight: 600 !important;
-    }
-
-    .row-actions {
-        display: none;
-        position: absolute;
-        right: 200px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: #fff;
-        border: 1px solid #dee2e6;
-        border-radius: 6px;
-        padding: 4px 8px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        z-index: 10;
-    }
-
-    /* Show on hover */
-    #clientsTable tbody tr:hover .row-actions {
-        display: flex;
-        gap: 8px;
-    }
-
-    .row-checkbox {
-        display: none;
-        margin-right: 8px;
-    }
-
-    #clientsTable tbody tr:hover .row-checkbox,
-    #clientsTable tbody tr.selected .row-checkbox {
-        display: inline-block;
-    }
-
-    /* make the actions cell a positioned container */
-    .actions-cell {
-        position: relative;
-        width: 1px;
-        /* shrink-to-fit so absolute box floats over table edge if needed */
-    }
-
-    /* floating action box (hidden by default) */
-    .row-actions {
-        display: none;
-        position: absolute;
-        right: 100px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: #fff;
-        border: 1px solid #e6e6e6;
-        border-radius: 8px;
-        padding: 6px 8px;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-        gap: 6px;
-        align-items: center;
-        z-index: 50;
-        white-space: nowrap;
-    }
-
-    /* show on row hover or if row is selected */
-    #clientsTable tbody tr:hover .row-actions,
-    #clientsTable tbody tr.selected .row-actions {
-        display: flex;
-    }
-
-    .row-actions button {
-        border: none;
-        background: transparent;
-        cursor: pointer;
-        padding: 6px;
-        border-radius: 6px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .row-actions button:hover {
-        background: rgba(13, 110, 253, 0.08);
-        color: #0d6efd;
-    }
-
-    /* tiny icon sizing */
-    .row-actions svg {
-        width: 18px;
-        height: 18px;
-    }
-
-  .filter-container {
-    position: relative;
+   .dropdown-content {
+    display: none;
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    z-index: 1000;
+}
+.dropdown-content.show {
+    display: block;
 }
 
-.filter-btn, .btn-status {
-    padding: 8px 16px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f8f8f8;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
+.dropdown {
+    position: relative;
+    display: inline-block;
 }
 
 .dropdown-content {
     display: none;
     position: absolute;
-    top: 110%;
-    left: 0;
-    background-color: #fff;
-    min-width: 220px;
+    background: #fff;
     border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
-    z-index: 1;
-    padding: 8px;
-}
-
-.dropdown-content input {
-    margin-right: 6px;
+    padding: 10px;
+    z-index: 1000;
+    width: 200px;
 }
 
 .dropdown-content.show {
