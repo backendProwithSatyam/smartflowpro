@@ -10,13 +10,14 @@
     }
 
     .page-title {
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-weight: 700;
         color: #276515;
         margin: 0;
         display: flex;
         align-items: center;
         gap: 0.5rem;
+        margin-bottom: 10px;
     }
 
     .back-btn {
@@ -27,7 +28,7 @@
         border-radius: 0.375rem;
         text-decoration: none;
         font-weight: 500;
-        transition: background-color 0.3s ease;
+        transition: 0.3s ease;
     }
 
     .back-btn:hover {
@@ -64,7 +65,7 @@
         border: 1px solid #d1d5db;
         border-radius: 0.375rem;
         padding: 0.75rem;
-        transition: border-color 0.3s ease;
+        transition: 0.3s ease;
     }
 
     .form-control:focus,
@@ -80,7 +81,7 @@
         padding: 0.75rem 1.5rem;
         border-radius: 0.375rem;
         font-weight: 500;
-        transition: background-color 0.3s ease;
+        transition: 0.3s ease;
     }
 
     .btn-primary-custom:hover {
@@ -95,7 +96,7 @@
         padding: 0.75rem 1.5rem;
         border-radius: 0.375rem;
         font-weight: 500;
-        transition: background-color 0.3s ease;
+        transition: 0.3s ease;
     }
 
     .btn-secondary-custom:hover {
@@ -158,11 +159,11 @@
     .btn-custom{
         background-color: #ffffff;
         border: 1px solid #276515;
-        color: 276515;
+        color: #276515;
         padding: 0.75rem 1.5rem;
         border-radius: 0.375rem;
         font-weight: 500;
-        transition: background-color 0.3s ease;
+        transition: 0.3s ease;
     }
 
     .product-item {
@@ -188,7 +189,7 @@
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        transition: background-color 0.3s ease;
+        transition: 0.3s ease;
     }
 
     .delete-item-btn:hover {
@@ -279,5 +280,13 @@
         border-top: 1px solid #e5e7eb;
         padding-top: 0.5rem;
         margin-top: 0.5rem;
+    }
+    .newjobs {
+        padding-bottom: 8px;
+        border-bottom: 1px solid #dadfe2;
+        justify-content: space-between;
+        align-items: center;
+        display: flex;
+        gap: 9rem;
     }
 </style>

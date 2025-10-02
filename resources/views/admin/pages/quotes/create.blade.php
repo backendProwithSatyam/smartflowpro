@@ -172,6 +172,21 @@
             box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
             z-index: 1000;
         }
+
+        .btn-custom-secondary {
+            background-color: #fff;
+            color: #388523;
+            border: #388523 solid 1px;
+        }
+
+        .btn-custom-secondary:hover {
+            background-color: #388523;
+            color: #fff;
+        }
+        .quotedetails{
+            padding-bottom: 8px;
+            border-bottom: 1px solid #dadfe2;
+        }
     </style>
 @endpush
 
@@ -185,7 +200,7 @@
                 <div class="card mb-4">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-7">
                                 <h3 class="mb-3">Quote for <span id="clientName">Client Name</span></h3>
                                 <div class="client-selector" id="clientSelector" onclick="showClientModal()">
                                     <i class="bi bi-plus-circle fs-1 text-success"></i>
@@ -213,11 +228,11 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-5">
                                 <div class="card">
                                     <div class="card-body">
                                         <h6 class="fw-bold mb-3">Quote details</h6>
-                                        <div class="mb-3">
+                                        <div class="mb-3 d-flex align-items-center justify-content-between quotedetails">
                                             <label class="form-label">Quote number</label>
                                             <div class="d-flex align-items-center">
                                                 <span class="me-2">#{{ $quoteNumber }}</span>
@@ -226,19 +241,19 @@
                                             <input type="hidden" name="quote_number" value="{{ $quoteNumber }}">
                                         </div>
 
-                                        <div class="mb-3">
+                                        <div class="mb-3 d-flex align-items-center justify-content-between quotedetails">
                                             <label class="form-label">Rate opportunity</label>
                                             <div class="stars" id="rateStars">
                                                 <i class="bi bi-star-fill" data-rating="1"></i>
-                                                <i class="bi bi-star-fill" data-rating="2"></i>
-                                                <i class="bi bi-star-fill" data-rating="3"></i>
+                                                <i class="bi bi-star" data-rating="2"></i>
+                                                <i class="bi bi-star" data-rating="3"></i>
                                                 <i class="bi bi-star" data-rating="4"></i>
                                                 <i class="bi bi-star" data-rating="5"></i>
                                             </div>
                                             <input type="hidden" name="rate_opportunity" value="3">
                                         </div>
 
-                                        <div class="mb-3">
+                                        <div class="mb-3 d-flex align-items-center justify-content-between quotedetails">
                                             <label class="form-label">Salesperson</label>
                                             <div class="d-flex">
                                                 <select name="salesperson" class="form-control">
@@ -248,6 +263,85 @@
                                                     @endforeach
                                                 </select>
                                             </div>
+                                        </div>
+                                         @if($customFields->isNotEmpty())
+                                            <div class="mb-3 d-flex align-items-center justify-content-between">
+                                                <table class="table table-borderless align-middle">
+                                                    <tbody>
+                                                        @foreach($customFields as $field)
+                                                            <tr>
+                                                                <!-- Label -->
+                                                                <td class="fw-semibold" style="width: 30%;">
+                                                                    {{ $field->label_name }}
+                                                                </td>
+                                                                <td>
+                                                                    @if($field->field_type === 'text')
+                                                                        <input type="text" 
+                                                                            name="custom_field_{{ $field->id }}" 
+                                                                            class="form-control" 
+                                                                            value="{{ $field->default_value }}">
+                                                                    
+                                                                    @elseif($field->field_type === 'number')
+                                                                        <input type="number" 
+                                                                            name="custom_field_{{ $field->id }}" 
+                                                                            class="form-control" 
+                                                                            value="{{ $field->default_value }}">
+                                                                    @elseif($field->field_type === 'select')
+                                                                        @php 
+                                                                            $options = $field->options ? json_decode($field->options) : [];
+                                                                        @endphp
+                                                                        <select name="custom_field_{{ $field->id }}" class="form-select">
+                                                                            @foreach($options as $opt)
+                                                                                <option value="{{ trim($opt) }}"
+                                                                                    {{ $field->default_value == trim($opt) ? 'selected' : '' }}>
+                                                                                    {{ trim($opt) }}
+                                                                                </option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    @elseif($field->field_type === 'checkbox')
+                                                                        @php 
+                                                                            $options = $field->options ? json_decode($field->options) : [];
+                                                                            $selected = $field->default_value;
+                                                                        @endphp
+                                                                        @foreach($options as $opt)
+                                                                            <div class="form-check form-check-inline" style="gap: 5px;margin-right: 10px;">
+                                                                                <input class="form-check-input" 
+                                                                                    id="custom_field_{{ $field->id }}_{{ trim($opt) }}"
+                                                                                    type="checkbox" 
+                                                                                    name="custom_field_{{ $field->id }}[]" 
+                                                                                    value="{{ trim($opt) }}"
+                                                                                    {{ $field->default_value == trim($opt) ? 'checked' : '' }}>
+                                                                                <label class="form-check-label" for="custom_field_{{ $field->id }}_{{ trim($opt) }}">{{ trim($opt) }}</label>
+                                                                            </div>
+                                                                        @endforeach
+
+                                                                    @elseif($field->field_type === 'radio')
+                                                                        @php 
+                                                                            $options = $field->options ? json_decode($field->options) : [];
+                                                                        @endphp
+                                                                        @foreach($options as $opt)
+                                                                            <div class="form-check form-check-inline" style="gap: 5px;margin-right: 10px;">
+                                                                                <input class="form-check-input" 
+                                                                                    id="custom_field_{{ $field->id }}_{{ trim($opt) }}"
+                                                                                    type="radio" 
+                                                                                    name="custom_field_{{ $field->id }}" 
+                                                                                    value="{{ trim($opt) }}"
+                                                                                    {{ $field->default_value == trim($opt) ? 'checked' : '' }}>
+                                                                                <label class="form-check-label" for="custom_field_{{ $field->id }}_{{ trim($opt) }}">{{ trim($opt) }}</label>
+                                                                            </div>
+                                                                        @endforeach
+                                                                    @endif
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        @endif
+                                        <div class="mb-3">
+                                            <button class="btn btn-custom-secondary btn-sm openModalBtn" type="button"
+                                                data-page-value="quotes" data-bs-toggle="modal"
+                                                data-bs-target="#addFieldsModal">Add custom field</button>
                                         </div>
                                     </div>
                                 </div>
@@ -470,47 +564,47 @@
             }
 
             const lineItemHtml = `
-                <div class="line-item" data-type="${type}" data-required="${required}">
-                    <div class="line-item-type ${typeClass}">${typeText}</div>
-                    <button type="button" class="remove-line-item" onclick="removeLineItem(this)">
-                        <i class="bi bi-x"></i>
-                    </button>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label class="form-label">Name</label>
-                            <input type="text" name="line_items[${lineItemCount}][name]" class="form-control" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Description</label>
-                            <textarea name="line_items[${lineItemCount}][description]" class="form-control" rows="2"></textarea>
-                        </div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-md-3">
-                            <label class="form-label">Qty.</label>
-                            <input type="number" name="line_items[${lineItemCount}][quantity]" class="form-control quantity" value="1" min="0" step="0.01" onchange="calculateLineTotal(this)" required>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label">Unit Price</label>
-                            <input type="number" name="line_items[${lineItemCount}][unit_price]" class="form-control unit-price" value="0" min="0" step="0.01" onchange="calculateLineTotal(this)" ${type === 'text' ? 'style="display:none"' : ''} required>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label">Total</label>
-                            <input type="number" name="line_items[${lineItemCount}][total]" class="form-control total" value="0" min="0" step="0.01" readonly ${type === 'text' ? 'style="display:none"' : ''}>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label">Image</label>
-                            <div class="border rounded p-2 text-center line-item-image-area" style="height: 38px; display: flex; align-items: center; justify-content: center; cursor:pointer;" onclick="triggerLineItemImageInput(this)">
-                                <i class="bi bi-image text-muted"></i>
-                                <span class="line-item-image-name ms-2" style="font-size: 0.9em;"></span>
-                                <input type="file" name="line_items[${lineItemCount}][image]" accept="image/*" style="display:none;" onchange="handleLineItemImageChange(this)">
+                        <div class="line-item" data-type="${type}" data-required="${required}">
+                            <div class="line-item-type ${typeClass}">${typeText}</div>
+                            <button type="button" class="remove-line-item" onclick="removeLineItem(this)">
+                                <i class="bi bi-x"></i>
+                            </button>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" name="line_items[${lineItemCount}][name]" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Description</label>
+                                    <textarea name="line_items[${lineItemCount}][description]" class="form-control" rows="2"></textarea>
+                                </div>
                             </div>
+                            <div class="row mt-2">
+                                <div class="col-md-3">
+                                    <label class="form-label">Qty.</label>
+                                    <input type="number" name="line_items[${lineItemCount}][quantity]" class="form-control quantity" value="1" min="0" step="0.01" onchange="calculateLineTotal(this)" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label">Unit Price</label>
+                                    <input type="number" name="line_items[${lineItemCount}][unit_price]" class="form-control unit-price" value="0" min="0" step="0.01" onchange="calculateLineTotal(this)" ${type === 'text' ? 'style="display:none"' : ''} required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label">Total</label>
+                                    <input type="number" name="line_items[${lineItemCount}][total]" class="form-control total" value="0" min="0" step="0.01" readonly ${type === 'text' ? 'style="display:none"' : ''}>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label">Image</label>
+                                    <div class="border rounded p-2 text-center line-item-image-area" style="height: 38px; display: flex; align-items: center; justify-content: center; cursor:pointer;" onclick="triggerLineItemImageInput(this)">
+                                        <i class="bi bi-image text-muted"></i>
+                                        <span class="line-item-image-name ms-2" style="font-size: 0.9em;"></span>
+                                        <input type="file" name="line_items[${lineItemCount}][image]" accept="image/*" style="display:none;" onchange="handleLineItemImageChange(this)">
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="line_items[${lineItemCount}][type]" value="${type}">
+                            <input type="hidden" name="line_items[${lineItemCount}][required]" value="${required === true ? 1 : 0}">
                         </div>
-                    </div>
-                    <input type="hidden" name="line_items[${lineItemCount}][type]" value="${type}">
-                    <input type="hidden" name="line_items[${lineItemCount}][required]" value="${required === true ? 1 : 0}">
-                </div>
-            `;
+                    `;
 
             lineItemsContainer.insertAdjacentHTML('beforeend', lineItemHtml);
         }
@@ -578,15 +672,15 @@
                     const fileItem = document.createElement('div');
                     fileItem.className = 'd-flex justify-content-between align-items-center p-2 border rounded mb-2';
                     fileItem.innerHTML = `
-                        <div class="d-flex align-items-center">
-                            <i class="bi bi-file-earmark me-2"></i>
-                            <span>${file.name}</span>
-                            <small class="text-muted ms-2">(${(file.size / 1024).toFixed(1)} KB)</small>
-                        </div>
-                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="removeFile(${index})">
-                            <i class="bi bi-x"></i>
-                        </button>
-                    `;
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-file-earmark me-2"></i>
+                                    <span>${file.name}</span>
+                                    <small class="text-muted ms-2">(${(file.size / 1024).toFixed(1)} KB)</small>
+                                </div>
+                                <button type="button" class="btn btn-sm btn-outline-danger" onclick="removeFile(${index})">
+                                    <i class="bi bi-x"></i>
+                                </button>
+                            `;
                     container.appendChild(fileItem);
                 });
             }
@@ -686,9 +780,9 @@
             const alertDiv = document.createElement('div');
             alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
             alertDiv.innerHTML = `
-                ${message}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            `;
+                        ${message}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    `;
 
             const container = document.querySelector('.container');
             container.insertBefore(alertDiv, container.firstChild);

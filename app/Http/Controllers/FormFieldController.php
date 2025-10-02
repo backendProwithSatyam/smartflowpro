@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\FormField;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FormFieldController extends Controller
 {
@@ -16,28 +17,33 @@ class FormFieldController extends Controller
     }
 
     // Store new fields
-  public function store(Request $request)
-{
-    $labels = $request->labelName;
-    $types = $request->fieldType;
-    $options = $request->options;
+    public function store(Request $request)
+    {
+        $labels = $request->labelName;
+        $pageName = $request->page_value;
+        $types = $request->fieldType;
+        $options = $request->options;
+        $transferrable = $request->transferable;
+        $defaults = $request->defaultValue;
 
-    foreach ($labels as $index => $label) {
-        \App\Models\FormField::create([
-            'label_name' => $label,
-            'field_type' => $types[$index],
-            'options' => in_array($types[$index], ['select','checkbox','radio'])
-                ? json_encode(explode(',', $options[$index] ?? ''))
-                : null,
-        ]);
+        foreach ($labels as $index => $label) {
+            FormField::create([
+                'label_name' => $label,
+                'field_type' => $types[$index],
+                'options' => in_array($types[$index], ['select', 'checkbox', 'radio'])
+                    ? json_encode(explode(',', $options[$index] ?? ''))
+                    : null,
+                'transferrable' => isset($transferrable) ? (bool)$transferrable : false,
+                'default_value' => $defaults ?? null,
+                'current_page_name' => $pageName ?? null,
+                'user_id' => Auth::id(),
+            ]);
+        }
+        return response()->json([
+            'status' => true,
+            'message' => 'Form fields saved successfully!'
+        ], 200);
     }
-
-    // 👇 Important: JSON response return karo
-    return response()->json([
-        'status' => true,
-        'message' => 'Form fields saved successfully!'
-    ], 200);
-}
 
 
     // Edit
@@ -65,4 +71,3 @@ class FormFieldController extends Controller
         return redirect()->route('form-fields.index')->with('success', 'Field deleted successfully!');
     }
 }
-

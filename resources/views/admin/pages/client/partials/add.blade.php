@@ -49,143 +49,235 @@
 <div class="d-flex justify-content-center align-items-center" style="min-height: 70vh;">
     <div class="container">
         <div class="row justify-content-center align-items-center">
-            <div class="col-lg-10">
-                   <div class="form-container">
-            <h2 class="mb-4 fw-bold">New Client</h2>
-            <form id="clientForm" method="POST"
-                action="{{ $editMode ? route('clients.update', $client) : route('clients.store') }}">
-                @csrf
-                @if($editMode)
-                @method('PUT')
-                @endif
-                <div class="row">
-                    <div class="col-lg-4">
-                        <h5 class="fw-bold text-dark mb-2">Primary contact details</h5>
-                        <p class="text-muted-custom mb-4">Provide the main point of contact to ensure smooth
-                            communication
-                            and
-                            reliable client records.</p>
-                    </div>
-                    <div class="col-lg-8">
-                        <div class="row g-3">
-                            <div class="col-md-3">
-                                <label for="title" class="form-label">Title</label>
-                                <select class="form-select" id="title" name="title">
-                                    <option value="">No title</option>
-                                    <option value="Mr" {{ $editMode && $client->title === 'Mr' ? 'selected' : '' }}>Mr
-                                    </option>
-                                    <option value="Mrs" {{ $editMode && $client->title === 'Mrs' ? 'selected' : '' }}>
-                                        Mrs
-                                    </option>
-                                    <option value="Miss" {{ $editMode && $client->title === 'Miss' ? 'selected' : '' }}>
-                                        Miss
-                                    </option>
-                                    <option value="Ms" {{ $editMode && $client->title === 'Ms' ? 'selected' : '' }}>Ms
-                                    </option>
-                                    <option value="Dr" {{ $editMode && $client->title === 'Dr' ? 'selected' : '' }}>Dr
-                                    </option>
-                                    <option value="Prof" {{ $editMode && $client->title === 'Prof' ? 'selected' : '' }}>
-                                        Prof
-                                    </option>
-                                </select>
-                                @error('title') <span class="text-danger">{{ $message }}</span> @enderror
-                            </div>
-                            <div class="col-md-4">
-                                <label for="firstName" class="form-label">First name</label>
-                                <input type="text" class="form-control" id="firstName" name="firstName"
-                                    placeholder="First name" value="{{ old('firstName', $client->first_name) }}">
-                                @error('firstName') <span class="text-danger">{{ $message }}</span> @enderror
-                            </div>
-                            <div class="col-md-5">
-                                <label for="lastName" class="form-label">Last name</label>
-                                <input type="text" class="form-control" id="lastName" name="lastName"
-                                    placeholder="Last name" value="{{ old('lastName', $client->last_name) }}">
-                                @error('lastName') <span class="text-danger">{{ $message }}</span> @enderror
-                            </div>
-                            <div class="row g-3 mt-2">
-                                <div class="col-12">
-                                    <label for="companyName" class="form-label">Company name</label>
-                                    <input type="text" class="form-control" id="companyName" name="companyName"
-                                        placeholder="Company name"
-                                        value="{{ old('companyName', $client->company_name ?? '') }}">
-                                    @error('companyName') <span class="text-danger">{{ $message }}</span> @enderror
+        <div class="col-lg-10">
+            <div class="form-container">
+                <h2 class="mb-4 fw-bold">New Client</h2>
+                <form id="clientForm" method="POST"
+                    action="{{ $editMode ? route('clients.update', $client) : route('clients.store') }}">
+                    @csrf
+                    @if($editMode)
+                    @method('PUT')
+                    @endif
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <h5 class="fw-bold text-dark mb-2">Primary contact details</h5>
+                            <p class="text-muted-custom mb-4">Provide the main point of contact to ensure smooth
+                                communication
+                                and
+                                reliable client records.</p>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="row g-3">
+                                <div class="col-md-3">
+                                    <label for="title" class="form-label">Title</label>
+                                    <select class="form-select" id="title" name="title">
+                                        <option value="">No title</option>
+                                        <option value="Mr" {{ $editMode && $client->title === 'Mr' ? 'selected' : '' }}>Mr
+                                        </option>
+                                        <option value="Mrs" {{ $editMode && $client->title === 'Mrs' ? 'selected' : '' }}>
+                                            Mrs
+                                        </option>
+                                        <option value="Miss" {{ $editMode && $client->title === 'Miss' ? 'selected' : '' }}>
+                                            Miss
+                                        </option>
+                                        <option value="Ms" {{ $editMode && $client->title === 'Ms' ? 'selected' : '' }}>Ms
+                                        </option>
+                                        <option value="Dr" {{ $editMode && $client->title === 'Dr' ? 'selected' : '' }}>Dr
+                                        </option>
+                                        <option value="Prof" {{ $editMode && $client->title === 'Prof' ? 'selected' : '' }}>
+                                            Prof
+                                        </option>
+                                    </select>
+                                    @error('title') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="firstName" class="form-label">First name</label>
+                                    <input type="text" class="form-control" id="firstName" name="firstName"
+                                        placeholder="First name" value="{{ old('firstName', $client->first_name) }}">
+                                    @error('firstName') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="lastName" class="form-label">Last name</label>
+                                    <input type="text" class="form-control" id="lastName" name="lastName"
+                                        placeholder="Last name" value="{{ old('lastName', $client->last_name) }}">
+                                    @error('lastName') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
+                                <div class="row g-3 mt-2">
+                                    <div class="col-12">
+                                        <label for="companyName" class="form-label">Company name</label>
+                                        <input type="text" class="form-control" id="companyName" name="companyName"
+                                            placeholder="Company name"
+                                            value="{{ old('companyName', $client->company_name ?? '') }}">
+                                        @error('companyName') <span class="text-danger">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                                <div class="section-divider">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label for="phoneNumber" class="form-label">Phone number</label>
+                                            <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber"
+                                                placeholder="Phone number"
+                                                value="{{ old('phoneNumber', $client->phone_number ?? '') }}">
+                                            @error('phoneNumber') <span class="text-danger">{{ $message }}</span> @enderror
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="email" name="email"
+                                                placeholder="Email" value="{{ old('email', $client->email ?? '') }}">
+                                            @error('email') <span class="text-danger">{{ $message }}</span> @enderror
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="section-divider">
+                                <h5 class="fw-bold text-dark mb-3">Lead information</h5>
                                 <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <label for="phoneNumber" class="form-label">Phone number</label>
-                                        <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber"
-                                            placeholder="Phone number"
-                                            value="{{ old('phoneNumber', $client->phone_number ?? '') }}">
-                                        @error('phoneNumber') <span class="text-danger">{{ $message }}</span> @enderror
+                                    <div class="col-md-12">
+                                        @include('admin.partials.lead_source', ['value' => old('lead_source', $client->lead_source)])
                                     </div>
-                                    <div class="col-md-6">
-                                        <label for="email" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="email" name="email"
-                                            placeholder="Email" value="{{ old('email', $client->email ?? '') }}">
-                                        @error('email') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
+                                <div class="row g-3 mt-2">
+                                    <div class="col-md-12">
+                                        <div class="accordion" id="clientDetailsAccordion">
+                                            <div class="accordion-item border-0 shadow-sm">
+                                                <h2 class="accordion-header" id="headingOne">
+                                                <button class="accordion-button d-flex justify-content-between bg-light collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                                    <span class="fw-bold">Additional client details</span>
+                                                </button>
+                                                </h2>
+
+                                                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                                                    data-bs-parent="#clientDetailsAccordion">
+                                                    <div class="accordion-body">
+                                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                                            <p class="mb-0 text-muted small">
+                                                                Need to gather specialized information? Create custom fields to capture exactly what matters to you.
+                                                            </p>
+                                                            <button class="btn btn-custom-secondary btn-sm openModalBtn" type="button" data-page-value="client" data-bs-toggle="modal" data-bs-target="#addFieldsModal">Add custom field</button>
+                                                        </div>
+                                                        @if($customFields->isNotEmpty())
+                                                            <table class="table table-borderless align-middle">
+                                                                <tbody>
+                                                                    @foreach($customFields as $field)
+                                                                        <tr>
+                                                                            <!-- Label -->
+                                                                            <td class="fw-semibold" style="width: 30%;">
+                                                                                {{ $field->label_name }}
+                                                                            </td>
+
+                                                                            <!-- Input based on type -->
+                                                                            <td>
+                                                                                @if($field->field_type === 'text')
+                                                                                    <input type="text" 
+                                                                                        name="custom_field_{{ $field->id }}" 
+                                                                                        class="form-control" 
+                                                                                        value="{{ $field->default_value }}">
+                                                                                
+                                                                                @elseif($field->field_type === 'number')
+                                                                                    <input type="number" 
+                                                                                        name="custom_field_{{ $field->id }}" 
+                                                                                        class="form-control" 
+                                                                                        value="{{ $field->default_value }}">
+                                                                                @elseif($field->field_type === 'select')
+                                                                                    @php 
+                                                                                        $options = $field->options ? json_decode($field->options) : [];
+                                                                                    @endphp
+                                                                                    <select name="custom_field_{{ $field->id }}" class="form-select">
+                                                                                        @foreach($options as $opt)
+                                                                                            <option value="{{ trim($opt) }}"
+                                                                                                {{ $field->default_value == trim($opt) ? 'selected' : '' }}>
+                                                                                                {{ trim($opt) }}
+                                                                                            </option>
+                                                                                        @endforeach
+                                                                                    </select>
+                                                                                @elseif($field->field_type === 'checkbox')
+                                                                                    @php 
+                                                                                        $options = $field->options ? json_decode($field->options) : [];
+                                                                                        $selected = $field->default_value;
+                                                                                    @endphp
+                                                                                    @foreach($options as $opt)
+                                                                                        <div class="form-check form-check-inline">
+                                                                                            <input class="form-check-input" 
+                                                                                                type="checkbox" 
+                                                                                                name="custom_field_{{ $field->id }}[]" 
+                                                                                                value="{{ trim($opt) }}"
+                                                                                                {{ $field->default_value == trim($opt) ? 'checked' : '' }}>
+                                                                                            <label class="form-check-label">{{ trim($opt) }}</label>
+                                                                                        </div>
+                                                                                    @endforeach
+                                                                                @elseif($field->field_type === 'radio')
+                                                                                    @php 
+                                                                                        $options = $field->options ? json_decode($field->options) : [];
+                                                                                    @endphp
+                                                                                    @foreach($options as $opt)
+                                                                                        <div class="form-check form-check-inline">
+                                                                                            <input class="form-check-input" 
+                                                                                                type="radio" 
+                                                                                                name="custom_field_{{ $field->id }}" 
+                                                                                                value="{{ trim($opt) }}"
+                                                                                                {{ $field->default_value == trim($opt) ? 'checked' : '' }}>
+                                                                                            <label class="form-check-label">{{ trim($opt) }}</label>
+                                                                                        </div>
+                                                                                    @endforeach
+                                                                                @endif
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endforeach
+                                                                </tbody>
+                                                            </table>
+                                                        @else
+                                                            <p class="text-muted small mt-3">No custom fields added yet.</p>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
-                        </div>
-                              <div class="section-divider">
-                        <h5 class="fw-bold text-dark mb-3">Lead information</h5>
-                        <div class="row g-3">
-                            <div class="col-md-12">
-                                @include('admin.partials.lead_source', ['value' => old('lead_source', $client->lead_source)])
-                            </div>
                         </div>
                     </div>
-                    </div>
-                </div>
-                 <div class="row section-divider">
+                    <div class="row section-divider">
                         <div class="col-lg-4 pt-5">
-                              <h5 class="fw-bold text-dark mb-2">Property Address Details</h5>
-                              <p>Enter the primary service address, billing address, or any additional locations where services may take place.</p>
+                                <h5 class="fw-bold text-dark mb-2">Property Address Details</h5>
+                                <p>Enter the primary service address, billing address, or any additional locations where services may take place.</p>
                         </div>
                         <div class="col-lg-8">
-                       <div class="section-divider-1">
-
-                        <div id="addressContainer">
-                            @forelse(old('addresses', $client->addresses->where('type', 'property')->toArray()) as $i => $addr)
-                                @include('admin.pages.client.partials.address', ['index' => $i, 'address' => $addr, 'taxRates' => $taxRates])
-                            @empty
-                                @include('admin.pages.client.partials.address', ['index' => 0, 'address' => [], 'taxRates' => $taxRates])
-                            @endforelse
+                            <div class="section-divider-1">
+                                <div id="addressContainer">
+                                    @forelse(old('addresses', $client->addresses->where('type', 'property')->toArray()) as $i => $addr)
+                                        @include('admin.pages.client.partials.address', ['index' => $i, 'address' => $addr, 'taxRates' => $taxRates])
+                                    @empty
+                                        @include('admin.pages.client.partials.address', ['index' => 0, 'address' => [], 'taxRates' => $taxRates])
+                                    @endforelse
+                                </div>
+                                <button type="button" id="addAddressBtn" class="btn btn-custom-secondary mt-2">
+                                    <i class="bi bi-plus-circle"></i> Add More Address
+                                </button>
+                            </div>
+                            <div class="form-check mt-4">
+                                <input class="form-check-input" type="checkbox" name="same_as_billing" id="same_as_billing" {{ old('same_as_billing', $client->same_as_billing ?? false) ? 'checked' : '' }}>
+                                <label class="form-check-label">Billing address same as property</label>
+                            </div>
+                            <div id="billingAddressSection" style="{{ old('same_as_billing', $client->same_as_billing) ? 'display:none;' : '' }}">
+                                <h5 class="mt-3">Billing Address</h5>
+                                @include('admin.pages.client.partials.address', ['index' => 'billing', 'address' =>
+                                $client->addresses->where('type', 'billing')->first() ?? [], 'taxRates' => $taxRates, 'billing' => true])
+                            </div>
+                            <div class="row">
+                                <div class="form-actions-fixed" style="position: fixed;">
+                                    <button type="button" class="btn btn-custom-secondary">Cancel</button>
+                                    <button type="submit"
+                                        class="btn btn-primary-custom me-2">{{ $editMode ? 'Update Client' : 'Create Client' }}</button>
+                                </div>
+                            </div>
                         </div>
-                        <button type="button" id="addAddressBtn" class="btn btn-custom-secondary mt-2">
-                            <i class="bi bi-plus-circle"></i> Add More Address
-                        </button>
-                    </div>
-                    <div class="form-check mt-4">
-                        <input class="form-check-input" type="checkbox" name="same_as_billing" id="same_as_billing" {{ old('same_as_billing', $client->same_as_billing ?? false) ? 'checked' : '' }}>
-                        <label class="form-check-label">Billing address same as property</label>
-                    </div>
-                      <div id="billingAddressSection"
-                    style="{{ old('same_as_billing', $client->same_as_billing) ? 'display:none;' : '' }}">
-                    <h5 class="mt-3">Billing Address</h5>
-                    @include('admin.pages.client.partials.address', ['index' => 'billing', 'address' =>
-                    $client->addresses->where('type', 'billing')->first() ?? [], 'taxRates' => $taxRates, 'billing' =>
-                    true])
-                </div>
-                <div class="row mt-4">
-                    <div class="form-actions-fixed">
-                        <button type="submit"
-                            class="btn btn-primary-custom me-2">{{ $editMode ? 'Update Client' : 'Create Client' }}</button>
-                        <button type="button" class="btn btn-custom-secondary">Cancel</button>
-                    </div>
-                </div>
-                        </div>
-                    </div>
-
-              
-            </form>
-        </div>
+                    </div>              
+                </form>
             </div>
         </div>
-     
+        </div>
     </div>
 </div>
 <div class="modal fade" id="taxRateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

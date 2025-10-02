@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreQuoteRequest;
 use App\Models\Client;
+use App\Models\FormField;
 use App\Models\Quote;
 use App\Models\TaxRate;
 use App\Models\User;
@@ -37,8 +38,11 @@ class QuoteController extends Controller
         $users = User::where('id', '!=', Auth::id())->get();
         $taxRates = TaxRate::where('user_id', Auth::id())->get();
         $quoteNumber = Quote::generateQuoteNumber();
-
-        return view('admin.pages.quotes.create', compact('clients', 'users', 'taxRates', 'quoteNumber'));
+        $customFields = FormField::where('user_id', Auth::id())
+            ->where('current_page_name', 'quotes')
+            ->orWhere('transferrable', true)
+            ->get();
+        return view('admin.pages.quotes.create', compact('clients', 'users', 'taxRates', 'quoteNumber','customFields'));
     }
 
     /**

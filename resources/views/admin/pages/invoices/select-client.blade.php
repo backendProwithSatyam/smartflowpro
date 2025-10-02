@@ -133,13 +133,13 @@
 
         <div class="search-section">
             <div class="row align-items-center">
-                <div class="col-md-8">
+                <div class="col-md-6">
                     <input type="text" class="form-control search-input" id="clientSearch" placeholder="Search clients...">
                 </div>
                 <div class="col-md-1 text-center">
                     <span class="text-muted">or</span>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-5">
                     <a href="{{ route('clients.create') }}" class="btn btn-custom w-100">
                         <i class="bi bi-plus-circle me-1"></i>
                         Create New Client
@@ -164,7 +164,7 @@
                                     <small>{{ $client->email }}</small>
                                 </div>
                                 <div class="activity-text">
-                                    Activity 3 days ago
+                                    {{ $client->created_at->diffForHumans() }}
                                 </div>
                             </div>
                         </div>

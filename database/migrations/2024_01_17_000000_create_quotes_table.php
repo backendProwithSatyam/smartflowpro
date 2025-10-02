@@ -27,7 +27,7 @@ return new class extends Migration
             $table->decimal('tax_amount', 10, 2)->default(0);
             $table->decimal('required_deposit', 10, 2)->default(0);
             $table->enum('deposit_type', ['percentage', 'fixed'])->default('percentage');
-            $table->decimal('total', 10, 2)->default(0);
+            $table->decimal('total', 10, places: 2)->default(0);
             $table->text('client_message')->nullable();
             $table->text('contract_disclaimer')->nullable();
             $table->text('internal_notes')->nullable();

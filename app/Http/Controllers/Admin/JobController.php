@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Client;
+use App\Models\FormField;
 use App\Models\Job;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,10 +33,14 @@ class JobController extends Controller
     public function create()
     {
         $clients = Client::where('user_id', Auth::id())->latest()->get();
+        $customFields = FormField::where('user_id', Auth::id())
+            ->where('current_page_name', 'jobs')
+            ->orWhere('transferrable', true)
+            ->get();
         if (request()->wantsJson()) {
             return response()->json(['clients' => $clients]);
         }
-        return view('admin.pages.jobs.new-job', compact('clients'));
+        return view('admin.pages.jobs.new-job', compact('clients','customFields'));
     }
 
     /**

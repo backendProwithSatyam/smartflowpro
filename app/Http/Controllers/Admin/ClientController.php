@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Client;
+use App\Models\FormField;
 use App\Models\TaxRate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,10 +30,15 @@ public function show(Client $client)
     {
         // dd(111);
         $taxRates = TaxRate::where('user_id', Auth::id())->get();
+        $customFields = FormField::where('user_id', Auth::id())
+            ->where('current_page_name', 'client')
+            ->orWhere('transferrable', true)
+            ->get();
         return view('admin.pages.client.partials.add', [
             'client' => new Client(),
             'taxRates' => $taxRates,
-            'editMode' => false
+            'editMode' => false,
+            'customFields' => $customFields
         ]);
     }
 

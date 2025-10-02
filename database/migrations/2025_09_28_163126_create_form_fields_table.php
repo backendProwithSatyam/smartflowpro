@@ -15,8 +15,8 @@ public function up()
     Schema::create('form_fields', function (Blueprint $table) {
         $table->id();
         $table->string('label_name');
-        $table->string('field_type'); // text, select, checkbox, radio
-        $table->text('options')->nullable(); // store comma separated options
+        $table->string('field_type');
+        $table->text('options')->nullable();
         $table->timestamps();
     });
 }

@@ -9,7 +9,10 @@ use Illuminate\Database\Eloquent\Model;
 class FormField extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 
-    protected $fillable = ['label_name', 'field_type', 'options'];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
-
