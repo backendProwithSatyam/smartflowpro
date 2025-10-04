@@ -256,18 +256,6 @@
 @endpush
 @section('content')
     <div class="d-flex justify-content-center align-items-center" style="min-height: 70vh;">
-        <div class="container">
-
-            <!-- Header Section -->
-            <div class="jobs-header">
-                <h1 class="jobs-title">Requests</h1>
-                <a href="{{ route('requests.index') }}" class="new-job-btn">
-                    New Request
-                </a>
-            </div>
-
-         
-    </div>
             @if(session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('success') }}
