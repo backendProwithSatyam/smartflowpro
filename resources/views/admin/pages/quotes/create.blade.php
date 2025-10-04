@@ -351,7 +351,7 @@
     }
 
     .quote-form h3 {
-        font-size: 36px;
+        font-size: 24px;
         font-weight: 800;
         font-family: Jobber Pro, Poppins, Helvetica, Arial, sans-serif;
         line-height: 2.5rem;
