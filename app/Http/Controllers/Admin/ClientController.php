@@ -166,6 +166,19 @@ public function show(Client $client)
         $client->save();
         return response()->json(['success' => true]);
     }
+        public function search(Request $request)
+        {
+            $query = $request->query('query');
+
+            $clients = Client::where('first_name', 'like', "%{$query}%")
+                ->orWhere('last_name', 'like', "%{$query}%")
+                ->orWhere('company_name', 'like', "%{$query}%")
+                ->get();
+
+            return response()->json($clients);
+        }
+
+
 
     public function destroy(Client $client)
     {

@@ -1,0 +1,23 @@
+:root {
+ --color-request: #c17d20;
+      --border-color: #dee2e6;
+      --bg-light: #fafaf8;
+      --text-dark: #333;
+      --text-muted: #6c757d;
+}
+
+.request-icon {
+  fill: var(--color-request);  /* use variable */
+}
+
+.warning-icon {
+  fill: var(--color-warning);
+}
+
+.danger-icon {
+  fill: var(--color-danger);
+}
+.bg-color{
+    background-color: var(--bg-light-color);
+}
+
