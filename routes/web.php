@@ -46,13 +46,14 @@ Route::middleware('auth')->group(function () {
     // })->name('clients.view');
 
     // client route
+    Route::get('/clients/search', [ClientController::class, 'search'])->name('clients.search');
     Route::resource('clients', ClientController::class);
+    // Route::resource('clients', ClientController::class);
     Route::resource('form-fields', FormFieldController::class);
     Route::post('clients/add-tag', [ClientController::class, 'addTag'])->name('clients.addTag');
+
     Route::resource('tax-rates', TaxRateController::class)->except(['show']);
-
     Route::resource('jobs', JobController::class);
-
     Route::resource('requests', RequestController::class);
     Route::patch('requests/{request}/status', [RequestController::class, 'updateStatus'])->name('requests.update-status');
     Route::resource('quotes', QuoteController::class);

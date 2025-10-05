@@ -483,9 +483,11 @@
                 <div class="col-md-8">
                     <h3 class="fw-bold mb-2">
                         Quote for <span class="text-dark">Client Name</span>
-                        <button type="button" class="btn btn-success btn-sm ms-2">
+                        <button type="button" class="btn btn-success btn-sm ms-2" data-bs-toggle="modal"
+                            data-bs-target="#clientSelectModal">
                             <i class="fa-solid fa-plus"></i>
                         </button>
+
                     </h3>
                     <div class="mb-3 mt-4">
                         <label class="form-label fw-semibold">Job title</label>
@@ -618,48 +620,48 @@
 
             <!-- Summary -->
             <div class="row mb-4">
-             <div class="col-md-6">
-  <div class="d-flex justify-content-between align-items-center py-2">
-    <a href="#" class="text-muted small d-flex align-items-center gap-1">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-        style="width: 20px; height: 20px; fill: currentColor;">
-        <path d="M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Zm-2 0a2 2 0 1 0-4 0 2 2 0 0 0 4 0Z"></path>
-        <path
-          d="M21.863 12.477C20.794 14.2 16.703 20 12 20c-4.702 0-8.795-5.8-9.863-7.523a.903.903 0 0 1 0-.954C3.205 9.8 7.297 4 12 4c4.703 0 8.794 5.8 9.863 7.523a.903.903 0 0 1 0 .954ZM20 12s-3.582-6-8-6-8 6-8 6 3.582 6 8 6 8-6 8-6Z">
-        </path>
-      </svg> Client view
-    </a>
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-between align-items-center py-2">
+                        <a href="#" class="text-muted small d-flex align-items-center gap-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                style="width: 20px; height: 20px; fill: currentColor;">
+                                <path d="M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Zm-2 0a2 2 0 1 0-4 0 2 2 0 0 0 4 0Z"></path>
+                                <path
+                                    d="M21.863 12.477C20.794 14.2 16.703 20 12 20c-4.702 0-8.795-5.8-9.863-7.523a.903.903 0 0 1 0-.954C3.205 9.8 7.297 4 12 4c4.703 0 8.794 5.8 9.863 7.523a.903.903 0 0 1 0 .954ZM20 12s-3.582-6-8-6-8 6-8 6 3.582 6 8 6 8-6 8-6Z">
+                                </path>
+                            </svg> Client view
+                        </a>
 
-    <!-- Ek hi button, text aur color toggle honge -->
-    <a href="#" id="toggleBtn" class="text-success fw-semibold">Change</a>
-  </div>
+                        <!-- Ek hi button, text aur color toggle honge -->
+                        <a href="#" id="toggleBtn" class="text-success fw-semibold">Change</a>
+                    </div>
 
-  <!-- Hidden Section -->
-  <div id="clientAdjust" class="mt-2 d-none p-2 rounded bg-light">
-    <p class="small mb-2">
-      Adjust what your client will see on this quote.<br>
-      To change the default for all future quotes, visit the PDF Style.
-    </p>
-   <div class="d-flex gap-3 flex-wrap">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="quantities">
-      <label class="form-check-label" for="quantities">Quantities</label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="unitPrices">
-      <label class="form-check-label" for="unitPrices">Unit prices</label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="lineTotals">
-      <label class="form-check-label" for="lineTotals">Line item totals</label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="totals">
-      <label class="form-check-label" for="totals">Totals</label>
-    </div>
-  </div>
-</div>
-</div>
+                    <!-- Hidden Section -->
+                    <div id="clientAdjust" class="mt-2 d-none p-2 rounded bg-light">
+                        <p class="small mb-2">
+                            Adjust what your client will see on this quote.<br>
+                            To change the default for all future quotes, visit the PDF Style.
+                        </p>
+                        <div class="d-flex gap-3 flex-wrap">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="quantities">
+                                <label class="form-check-label" for="quantities">Quantities</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="unitPrices">
+                                <label class="form-check-label" for="unitPrices">Unit prices</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="lineTotals">
+                                <label class="form-check-label" for="lineTotals">Line item totals</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="totals">
+                                <label class="form-check-label" for="totals">Totals</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-6">
                     <div class="d-flex justify-content-between border-bottom py-1 pt-2 pb-2">
                         <span>Subtotal</span> <span id="subtotalValue">₹0.00</span>
@@ -737,6 +739,49 @@
         </button>
     </div>
 </div>
+</div>
+<!-- Client Modal -->
+<!-- Client Select/Create Modal -->
+<div class="modal fade" id="clientSelectModal" tabindex="-1" aria-labelledby="clientSelectModalLabel"
+    aria-hidden="true">
+
+    <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Select or create a client</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="col-lg-12 p-4 rounded" style="border:1px solid #ccc">
+        <div class="mb-3">
+          <p class="fw-semibold">Which client would you like to create this for?</p>
+        </div>
+
+        <div class="row align-items-center mb-3">
+          <div class="col-md-6 mb-2 mb-md-0">
+        <input type="text" id="clientSearch" class="form-control" placeholder="Search clients...">
+          </div>
+          <div class="col-md-2 text-center">
+            <p>OR</p>
+          </div>
+          <div class="col-md-4 text-md-end text-center">
+            <a href="{{ route('clients.create') }}" class="btn btn-success w-100 w-md-auto">
+              <i class="fa-solid fa-plus me-1"></i> Create New Client
+            </a>
+          </div>
+        </div>
+
+        <div class="rounded p-3" style="max-height: 300px; overflow-y: auto;">
+      <div id="clientList"></div>
+      <div class="text-center text-muted mt-3 d-none" id="noResults">
+  <p>No results found. You can search by first name, last name, or company name.</p>
+</div>
+
+        </div>
+            </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Client Selection Modal -->
@@ -919,594 +964,357 @@
 @endsection
 
 @push('scripts')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
- document.addEventListener("DOMContentLoaded", () => {
+$(document).ready(function() {
+     const nores=`<div class="text-center pt-5 pb-5 mt-5 mb-5">
+        <h5>No results</h5>
+        <strong> You can search by first name, last name,<br/> or company name. Remember to check your spelling. </strong></div>`;
+       $('#clientList').html(nores);
+    $('#clientSearch').on('keyup', function() {
+        let query = $(this).val().trim();
+
+        if (query.length > 0) {
+            $.ajax({
+              url: "{{ route('clients.search') }}",
+                type: "GET",
+                data: { query: query },
+                success: function(clients) {
+                    let html = '';
+                    if (clients.length > 0) {
+                        clients.forEach(function(client) {
+                            html += ` <div class="client-item d-flex align-items-center p-2" data-id="${client.id}"
+                            style="cursor:pointer;">
+                            <div class="me-3">
+                                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="User Icon" class="rounded-circle"
+                                    width="40" height="40">
+                            </div>
+                            <div>
+                                <p class="mb-1 fw-bold">${client.first_name} ${client.last_name} <span
+                                        class="text-muted">(${client.company_name})</span></p>
+                                <p class="mb-0 text-sm"><span class="fw-semibold">1 Property</span> | ${client.phone || 'N/A'}</p>
+                            </div>
+                        </div>`;
+                        });
+                        $('#clientList').html(html);
+                        $('#noResults').addClass('d-none');
+                    } else {
+                        $('#clientList').empty();
+                        $('#noResults').removeClass('d-none');
+                    }
+                },
+                error: function() {
+                    console.error('Error fetching clients.');
+                }
+            });
+        } else {
+            $('#clientList').empty();
+            $('#noResults').addClass('d-none');
+        }
+    });
+
+    // Optional: click to select client
+    $(document).on('click', '.client-item', function() {
+        let clientId = $(this).data('id');
+        let clientName = $(this).text();
+        console.log('Selected client:', clientId, clientName);
+        // You can set the value somewhere or close the modal
+        $('#clientSelectModal').modal('hide');
+    });
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    // ========== INTRO FORM TOGGLE ==========
+    const addSectionBtn = document.getElementById("addSectionBtn");
+    const introForm = document.getElementById("introForm");
+    const cancelBtn = document.getElementById("cancelBtn");
+
+    if (addSectionBtn && introForm && cancelBtn) {
+        addSectionBtn.addEventListener("click", () => {
+            introForm.style.display = "block";
+            addSectionBtn.style.display = "none";
+        });
+
+        cancelBtn.addEventListener("click", () => {
+            introForm.style.display = "none";
+            addSectionBtn.style.display = "inline-block";
+        });
+    }
+
+    // ========== CLIENT ADJUST TOGGLE ==========
     const toggleBtn = document.getElementById("toggleBtn");
     const clientAdjust = document.getElementById("clientAdjust");
-    let isOpen = false;
 
-    toggleBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      isOpen = !isOpen;
+    if (toggleBtn && clientAdjust) {
+        let isOpen = false;
+        toggleBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            isOpen = !isOpen;
+            if (isOpen) {
+                toggleBtn.textContent = "Cancel";
+                toggleBtn.classList.replace("text-success", "text-danger");
+                clientAdjust.classList.remove("d-none");
+            } else {
+                toggleBtn.textContent = "Change";
+                toggleBtn.classList.replace("text-danger", "text-success");
+                clientAdjust.classList.add("d-none");
+            }
+        });
+    }
 
-      if (isOpen) {
-        toggleBtn.textContent = "Cancel";
-        toggleBtn.classList.remove("text-success");
-        toggleBtn.classList.add("text-danger");
-        clientAdjust.classList.remove("d-none");
-      } else {
-        toggleBtn.textContent = "Change";
-        toggleBtn.classList.remove("text-danger");
-        toggleBtn.classList.add("text-success");
-        clientAdjust.classList.add("d-none");
-      }
-    });
-  });
-</script>
-<script>
+    // ========== DISCOUNT SECTION ==========
     const discountRow = document.getElementById('discountRow');
-    const addDiscountBtn = document.getElementById('addDiscountBtn');
-    addDiscountBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        // Replace "Add Discount" with input + buttons
-        discountRow.innerHTML = `
-   <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-  <span class="fw-semibold">Discount</span>
+    let addDiscountBtn = document.getElementById('addDiscountBtn');
 
-  <div class="d-flex align-items-center gap-2">
-    <input type="text" id="discountInput" class="form-control form-control-sm text-end"
-           placeholder="Enter % or ₹" style="width: 120px;">
-    <button type="button" id="applyDiscountBtn" class="btn btn-sm btn-outline-success">Apply</button>
-    <button type="button" id="cancelDiscountBtn" class="btn btn-sm btn-outline-secondary">Cancel</button>
-  </div>
-</div>
+    function attachDiscountEvents() {
+        const applyBtn = document.getElementById('applyDiscountBtn');
+        const cancelBtn = document.getElementById('cancelDiscountBtn');
 
+        if (applyBtn) {
+            applyBtn.addEventListener('click', () => {
+                const valInput = document.getElementById('discountInput');
+                const val = valInput ? valInput.value.trim() || '0' : '0';
+                discountRow.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+                        <span class="fw-semibold">Discount</span>
+                        <div class="d-flex align-items-center gap-2">
+                            <span>${val.startsWith('₹') || val.endsWith('%') ? val : '₹' + val}</span>
+                            <a href="#" class="change-btn" id="editDiscountBtn">Edit</a>
+                        </div>
+                    </div>`;
+                document.getElementById('editDiscountBtn').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    addDiscountBtn.click();
+                });
+            });
+        }
 
-    `;
-        // Handle Apply
-        document.getElementById('applyDiscountBtn').addEventListener('click', () => {
-            const val = document.getElementById('discountInput').value.trim() || '0';
-            discountRow.innerHTML = `
-         <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-  <span class="fw-semibold">Discount</span>
-         <div class="d-flex align-items-center gap-2">
-        <span>${val.startsWith('₹') || val.endsWith('%') ? val : '₹' + val}</span>
-        <a href="#" class="change-btn" id="editDiscountBtn">Edit</a>
-        </div>
-        </div>
-      `;
-            attachEditEvent();
-        });
-        // Handle Cancel
-        document.getElementById('cancelDiscountBtn').addEventListener('click', () => {
-            discountRow.innerHTML = `
-         <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-  <span class="fw-semibold">Discount</span>
-          <div class="d-flex align-items-center gap-2">
+        if (cancelBtn) {
+            cancelBtn.addEventListener('click', () => {
+                discountRow.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+                        <span class="fw-semibold">Discount</span>
+                        <div class="d-flex align-items-center gap-2">
+                            <a href="#" class="change-btn" id="addDiscountBtn">Add Discount</a>
+                        </div>
+                    </div>`;
+                addDiscountBtn = document.getElementById('addDiscountBtn');
+                addDiscountBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    addDiscountBtn.click();
+                });
+            });
+        }
+    }
 
-        <a href="#" class="change-btn" id="addDiscountBtn">Add Discount</a>
-        </div>
-        </div>
-      `;
-            attachAddEvent(); // reattach add event
-        });
-    });
-    // Helper functions to reattach events dynamically
-    function attachAddEvent() {
-        document.getElementById('addDiscountBtn').addEventListener('click', (e) => {
+    if (discountRow && addDiscountBtn) {
+        addDiscountBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            addDiscountBtn.click();
+            discountRow.innerHTML = `
+                <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+                    <span class="fw-semibold">Discount</span>
+                    <div class="d-flex align-items-center gap-2">
+                        <input type="text" id="discountInput" class="form-control form-control-sm text-end"
+                            placeholder="Enter % or ₹" style="width: 120px;">
+                        <button type="button" id="applyDiscountBtn" class="btn btn-sm btn-outline-success">Apply</button>
+                        <button type="button" id="cancelDiscountBtn" class="btn btn-sm btn-outline-secondary">Cancel</button>
+                    </div>
+                </div>`;
+            attachDiscountEvents();
         });
     }
 
-    function attachEditEvent() {
-        document.getElementById('editDiscountBtn').addEventListener('click', (e) => {
-            e.preventDefault();
-            addDiscountBtn.click(); // reuse the add logic
-        });
-    }
-</script>
-
-<script>
+    // ========== QUOTE CHANGE SECTION ==========
     const quoteSection = document.getElementById('quoteSection');
     const quoteLabel = document.getElementById('quoteLabel');
     const changeBtn = document.getElementById('changeQuoteBtn');
-    changeBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        // Replace label and link with input + cancel
-        quoteSection.innerHTML = `
-      <input type="number" id="quoteInput" class="form-control form-control-sm me-2" 
-             style="max-width: 200px;" value="${quoteLabel.textContent.replace('Quote number ', '').replace('#', '')}">
-      <button type="button" id="cancelQuoteBtn" class="btn btn-outline-primary">Cancel</button>
-    `;
-        // Add cancel button behavior
-        const cancelBtn = document.getElementById('cancelQuoteBtn');
-        cancelBtn.addEventListener('click', () => {
+
+    if (changeBtn && quoteSection && quoteLabel) {
+        changeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
             quoteSection.innerHTML = `
-        <label class="form-label small fw-semibold" id="quoteLabel">Quote number #1</label>
-        <a href="#" class="change-btn" id="changeQuoteBtn">Change</a>
-      `;
-            // Reattach click event for the new Change button
-            document.getElementById('changeQuoteBtn').addEventListener('click', (e) => {
-                e.preventDefault();
-                changeBtn.click(); // trigger same logic again
+                <input type="number" id="quoteInput" class="form-control form-control-sm me-2"
+                    style="max-width: 200px;"
+                    value="${quoteLabel.textContent.replace('Quote number #', '')}">
+                <button type="button" id="cancelQuoteBtn" class="btn btn-outline-primary">Cancel</button>`;
+            document.getElementById('cancelQuoteBtn').addEventListener('click', () => {
+                quoteSection.innerHTML = `
+                    <label class="form-label small fw-semibold" id="quoteLabel">Quote number #1</label>
+                    <a href="#" class="change-btn" id="changeQuoteBtn">Change</a>`;
+                document.getElementById('changeQuoteBtn').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    changeBtn.click();
+                });
             });
         });
-    });
-</script>
+    }
 
-<script>
-    // 🔹 Element references
+    // ========== PAYMENT SCHEDULE / DEPOSIT LOGIC ==========
     const depositRadio = document.getElementById('depositRadio');
+    const paymentScheduleRadio = document.getElementById('paymentScheduleRadio');
     const depositHideSection = document.querySelector('.diposit-hide-section');
+    const paymentScheduleSection = document.querySelector('.payment-schedule-section');
     const percentBtn = document.getElementById('percentBtn');
     const amountBtn = document.getElementById('amountBtn');
     const toggleAmount = document.getElementById('toggle_amount');
-    const paymentScheduleRadio = document.getElementById('paymentScheduleRadio');
-    const paymentScheduleSection = document.querySelector('.payment-schedule-section');
     const schedulePercentBtn = document.getElementById('schedulePercentBtn');
     const scheduleAmountBtn = document.getElementById('scheduleAmountBtn');
     const scheduleRowsContainer = document.getElementById('scheduleRowsContainer');
     const addScheduleRowBtn = document.getElementById('addScheduleRow');
-    // 🔹 Default Mode
-    let scheduleMode = 'percentage'; // default for Payment Schedule
-    // ======================
-    // 🔹 Deposit Section Logic
-    // ======================
-    depositRadio.addEventListener('change', () => {
-        if (depositRadio.checked) {
-            depositHideSection.classList.remove('hidden');
-            paymentScheduleSection.classList.add('hidden');
+    let scheduleMode = 'percentage';
+
+    function addScheduleRow() {
+        if (!scheduleRowsContainer) return;
+        const row = document.createElement('div');
+        row.classList.add('payment-row');
+        row.innerHTML = (scheduleMode === 'percentage') ?
+            `<input type="number" class="form-control amount-input" placeholder="Amount (%)" min="0">
+             <input type="text" class="form-control desc-input" placeholder="Description">
+             <input type="text" class="form-control total-input" placeholder="Total ₹">
+             <button type="button" class="delete-row">✖</button>` :
+            `<input type="text" class="form-control desc-input" placeholder="Description">
+             <input type="text" class="form-control total-input" placeholder="Total ₹">
+             <button type="button" class="delete-row">✖</button>`;
+        scheduleRowsContainer.appendChild(row);
+        row.querySelector('.delete-row').addEventListener('click', () => row.remove());
+    }
+
+    if (depositRadio && paymentScheduleRadio) {
+        depositRadio.addEventListener('change', () => {
+            if (depositRadio.checked) {
+                depositHideSection?.classList.remove('hidden');
+                paymentScheduleSection?.classList.add('hidden');
+                percentBtn?.classList.add('active');
+                amountBtn?.classList.remove('active');
+                if (toggleAmount) toggleAmount.value = '0%';
+            }
+        });
+
+        paymentScheduleRadio.addEventListener('change', () => {
+            if (paymentScheduleRadio.checked) {
+                paymentScheduleSection?.classList.remove('hidden');
+                depositHideSection?.classList.add('hidden');
+                scheduleMode = 'percentage';
+                schedulePercentBtn?.classList.add('active');
+                scheduleAmountBtn?.classList.remove('active');
+                if (scheduleRowsContainer) scheduleRowsContainer.innerHTML = '';
+                addScheduleRow();
+            }
+        });
+    }
+
+    if (percentBtn && amountBtn && toggleAmount) {
+        percentBtn.addEventListener('click', () => {
             percentBtn.classList.add('active');
             amountBtn.classList.remove('active');
             toggleAmount.value = '0%';
-        }
-    });
-    percentBtn.addEventListener('click', () => {
-        percentBtn.classList.add('active');
-        amountBtn.classList.remove('active');
-        toggleAmount.value = '0%';
-    });
-    amountBtn.addEventListener('click', () => {
-        amountBtn.classList.add('active');
-        percentBtn.classList.remove('active');
-        toggleAmount.value = '0 Rs';
-    });
-    // ======================
-    // 🔹 Payment Schedule Logic
-    // ======================
-    paymentScheduleRadio.addEventListener('change', () => {
-        if (paymentScheduleRadio.checked) {
-            paymentScheduleSection.classList.remove('hidden');
-            depositHideSection.classList.add('hidden');
-            // Reset to default mode
+        });
+        amountBtn.addEventListener('click', () => {
+            amountBtn.classList.add('active');
+            percentBtn.classList.remove('active');
+            toggleAmount.value = '0 Rs';
+        });
+    }
+
+    if (schedulePercentBtn && scheduleAmountBtn && scheduleRowsContainer) {
+        schedulePercentBtn.addEventListener('click', () => {
             scheduleMode = 'percentage';
             schedulePercentBtn.classList.add('active');
             scheduleAmountBtn.classList.remove('active');
             scheduleRowsContainer.innerHTML = '';
             addScheduleRow();
-        }
-    });
-    // 🔹 Toggle Between Percentage / Fixed Amount
-    schedulePercentBtn.addEventListener('click', () => {
-        scheduleMode = 'percentage';
-        schedulePercentBtn.classList.add('active');
-        scheduleAmountBtn.classList.remove('active');
-        scheduleRowsContainer.innerHTML = '';
-        addScheduleRow();
-    });
-    scheduleAmountBtn.addEventListener('click', () => {
-        scheduleMode = 'amount';
-        scheduleAmountBtn.classList.add('active');
-        schedulePercentBtn.classList.remove('active');
-        scheduleRowsContainer.innerHTML = '';
-        addScheduleRow();
-    });
-    // ======================
-    // 🔹 Dynamic Row Creation
-    // ======================
-    function addScheduleRow() {
-        const row = document.createElement('div');
-        row.classList.add('payment-row');
-        if (scheduleMode === 'percentage') {
-            row.innerHTML = `
-        <input type="number" class="form-control amount-input" placeholder="Amount (%)" min="0">
-        <input type="text" class="form-control desc-input" placeholder="Description">
-        <input type="text" class="form-control total-input" placeholder="Total ₹">
-        <button type="button" class="delete-row">✖</button>
-      `;
-        } else {
-            row.innerHTML = `
-        <input type="text" class="form-control desc-input" placeholder="Description">
-        <input type="text" class="form-control total-input" placeholder="Total ₹">
-        <button type="button" class="delete-row">✖</button>
-      `;
-            row.style.gridTemplateColumns = "2fr 1fr auto";
-        }
-        scheduleRowsContainer.appendChild(row);
-        // Delete row functionality
-        row.querySelector('.delete-row').addEventListener('click', () => row.remove());
-    }
-    // 🔹 Add Row Button
-    addScheduleRowBtn.addEventListener('click', addScheduleRow);
-</script>
-
-<script>
-    document.getElementById('addSectionBtn').addEventListener('click', function() {
-        document.getElementById('introForm').style.display = 'block';
-    });
-    document.getElementById('cancelBtn').addEventListener('click', function() {
-        document.getElementById('introForm').style.display = 'none';
-    });
-    let lineItemCount = 0;
-    let selectedFiles = [];
-    document.addEventListener('DOMContentLoaded', function() {
-        addLineItem('product');
-    });
-    // --- Client Selection ---
-    function showClientModal() {
-        const modal = new bootstrap.Modal(document.getElementById('clientModal'));
-        modal.show();
-    }
-
-    function selectClient(id, name, email) {
-        document.getElementById('client_id').value = id;
-        document.getElementById('clientName').textContent = name;
-        document.getElementById('selectedClientName').textContent = name;
-        document.getElementById('selectedClientEmail').textContent = email;
-        document.getElementById('clientSelector').style.display = 'none';
-        document.getElementById('clientInfo').classList.add('show');
-        const modal = bootstrap.Modal.getInstance(document.getElementById('clientModal'));
-        modal.hide();
-    }
-
-    function changeClient() {
-        document.getElementById('clientSelector').style.display = 'block';
-        document.getElementById('clientInfo').classList.remove('show');
-        document.getElementById('client_id').value = '';
-    }
-    // --- Rate Stars ---
-    document.addEventListener("DOMContentLoaded", function() {
-        document.querySelectorAll('#rateStars i').forEach(star => {
-            star.addEventListener('click', function() {
-                const rating = parseInt(this.dataset.rating);
-                document.querySelector('input[name="rate_opportunity"]').value = rating;
-                document.querySelectorAll('#rateStars i').forEach((s, index) => {
-                    s.className = index < rating ? 'bi bi-star-fill' : 'bi bi-star';
-                });
-            });
         });
-    });
-    // --- Line Items ---
-    function addLineItem(type) {
-        lineItemCount++;
-        const lineItemsContainer = document.getElementById('lineItems');
-        let typeClass = '',
-            typeText = '',
-            required = true;
-        switch (type) {
-            case 'product':
-                typeClass = 'required';
-                typeText = 'Required';
-                required = true;
-                break;
-            case 'optional':
-                typeClass = 'optional';
-                typeText = 'Optional';
-                required = false;
-                break;
-            case 'text':
-                typeClass = 'text';
-                typeText = 'Text';
-                required = false;
-                break;
-        }
-        const lineItemHtml = `
-            <div class="line-item" data-type="${type}" data-required="${required}">
-                <div class="line-item-type ${typeClass}">${typeText}</div>
-                <button type="button" class="remove-line-item" onclick="removeLineItem(this)">
-                    <i class="bi bi-x"></i>
-                </button>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label class="form-label">Name</label>
-                        <input type="text" name="line_items[${lineItemCount}][name]" class="form-control" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Description</label>
-                        <textarea name="line_items[${lineItemCount}][description]" class="form-control" rows="2"></textarea>
-                    </div>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-md-3">
-                        <label class="form-label">Qty.</label>
-                        <input type="number" name="line_items[${lineItemCount}][quantity]" class="form-control quantity" value="1" min="0" step="0.01" onchange="calculateLineTotal(this)" required>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Unit Price</label>
-                        <input type="number" name="line_items[${lineItemCount}][unit_price]" class="form-control unit-price" value="0" min="0" step="0.01" onchange="calculateLineTotal(this)" ${type === 'text' ? 'style="display:none"' : ''} required>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Total</label>
-                        <input type="number" name="line_items[${lineItemCount}][total]" class="form-control total" value="0" min="0" step="0.01" readonly ${type === 'text' ? 'style="display:none"' : ''}>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Image</label>
-                        <div class="border rounded p-2 text-center line-item-image-area" style="height: 38px; display: flex; align-items: center; justify-content: center; cursor:pointer;" onclick="triggerLineItemImageInput(this)">
-                            <i class="bi bi-image text-muted"></i>
-                            <span class="line-item-image-name ms-2" style="font-size: 0.9em;"></span>
-                            <input type="file" name="line_items[${lineItemCount}][image]" accept="image/*" style="display:none;" onchange="handleLineItemImageChange(this)">
-                        </div>
-                    </div>
-                </div>
-                <input type="hidden" name="line_items[${lineItemCount}][type]" value="${type}">
-                <input type="hidden" name="line_items[${lineItemCount}][required]" value="${required ? 1 : 0}">
-            </div>
-        `;
-        lineItemsContainer.insertAdjacentHTML('beforeend', lineItemHtml);
-    }
-
-    function triggerLineItemImageInput(element) {
-        const fileInput = element.querySelector('input[type="file"]');
-        if (fileInput) fileInput.click();
-    }
-
-    function handleLineItemImageChange(input) {
-        const file = input.files[0];
-        const imageNameSpan = input.closest('.line-item-image-area').querySelector('.line-item-image-name');
-        imageNameSpan.textContent = file ? file.name : '';
-    }
-
-    function removeLineItem(button) {
-        button.closest('.line-item').remove();
-        calculateTotals();
-    }
-
-    function calculateLineTotal(input) {
-        const lineItem = input.closest('.line-item');
-        const quantity = parseFloat(lineItem.querySelector('.quantity').value) || 0;
-        const unitPrice = parseFloat(lineItem.querySelector('.unit-price').value) || 0;
-        const total = quantity * unitPrice;
-        lineItem.querySelector('.total').value = total.toFixed(2);
-        calculateTotals();
-    }
-
-    function calculateTotals() {
-        let subtotal = 0;
-        document.querySelectorAll('.line-item').forEach(item => {
-            subtotal += parseFloat(item.querySelector('.total').value) || 0;
-        });
-        document.getElementById('subtotal').textContent = '$' + subtotal.toFixed(2);
-        document.getElementById('total').textContent = '$' + subtotal.toFixed(2);
-    }
-    // --- File handling ---
-    document.getElementById('fileInput').addEventListener('change', e => handleFiles(e.target.files));
-
-    function handleFiles(files) {
-        selectedFiles = [...selectedFiles, ...Array.from(files)];
-        displaySelectedFiles();
-    }
-
-    function displaySelectedFiles() {
-        const container = document.getElementById('selectedFiles');
-        container.innerHTML = '';
-        selectedFiles.forEach((file, index) => {
-            container.insertAdjacentHTML('beforeend', `
-                <div class="d-flex justify-content-between align-items-center p-2 border rounded mb-2">
-                    <div class="d-flex align-items-center">
-                        <i class="bi bi-file-earmark me-2"></i>
-                        <span>${file.name}</span>
-                        <small class="text-muted ms-2">(${(file.size / 1024).toFixed(1)} KB)</small>
-                    </div>
-                    <button type="button" class="btn btn-sm btn-outline-danger" onclick="removeFile(${index})">
-                        <i class="bi bi-x"></i>
-                    </button>
-                </div>
-            `);
+        scheduleAmountBtn.addEventListener('click', () => {
+            scheduleMode = 'amount';
+            scheduleAmountBtn.classList.add('active');
+            schedulePercentBtn.classList.remove('active');
+            scheduleRowsContainer.innerHTML = '';
+            addScheduleRow();
         });
     }
 
-    function removeFile(index) {
-        selectedFiles.splice(index, 1);
-        displaySelectedFiles();
-    }
-    // --- Save form ---
-    document.getElementById('saveQuoteBtn').addEventListener('click', submitForm);
+    if (addScheduleRowBtn) addScheduleRowBtn.addEventListener('click', addScheduleRow);
 
-    function submitForm() {
-        const form = document.getElementById('quoteForm');
-        const formData = new FormData(form);
-        const saveBtn = document.getElementById('saveQuoteBtn');
-        const btnText = document.querySelector('.btn-text');
-        const loadingSpinner = document.getElementById('loadingSpinner');
-        clearErrors();
-        saveBtn.disabled = true;
-        btnText.textContent = 'Saving...';
-        loadingSpinner.classList.remove('d-none');
-        selectedFiles.forEach(f => formData.append('attachments[]', f));
-        fetch('{{ route("quotes.store") }}', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
-                    'Accept': 'application/json'
-                }
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    showAlert('success', data.message);
-                    setTimeout(() => window.location.href = '{{ route("quotes.index") }}', 1500);
-                } else {
-                    showAlert('danger', data.message);
-                    if (data.errors) showValidationErrors(data.errors);
-                }
-            })
-            .catch(() => showAlert('danger', 'An error occurred while saving the quote.'))
-            .finally(() => {
-                saveBtn.disabled = false;
-                btnText.textContent = 'Save Quote';
-                loadingSpinner.classList.add('d-none');
-            });
-    }
-
-    function clearErrors() {
-        document.querySelectorAll('.error-message').forEach(e => e.textContent = '');
-        document.querySelectorAll('.is-invalid').forEach(e => e.classList.remove('is-invalid'));
-    }
-
-    function showValidationErrors(errors) {
-        Object.keys(errors).forEach(f => {
-            const error = document.getElementById(f + '-error');
-            const input = document.querySelector(`[name="${f}"]`);
-            if (error) error.textContent = errors[f][0];
-            if (input) input.classList.add('is-invalid');
-        });
-    }
-
-    function showAlert(type, message) {
-        const alertDiv = document.createElement('div');
-        alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
-        alertDiv.innerHTML = `${message}<button type="button" class="btn-close" data-bs-dismiss="alert"></button>`;
-        const container = document.querySelector('.container');
-        container.insertBefore(alertDiv, container.firstChild);
-        setTimeout(() => alertDiv.remove(), 5000);
-    }
-    // --- Client Search ---
-    document.addEventListener('DOMContentLoaded', function() {
-        const searchInput = document.getElementById('clientSearch');
-        const clientList = document.getElementById('clientList');
-        const notFound = document.getElementById('clientNotFound');
-        searchInput.addEventListener('input', function() {
-            const q = this.value.trim().toLowerCase();
-            let found = false;
-            clientList.querySelectorAll('.client-item').forEach(item => {
-                const name = item.dataset.name;
-                const email = item.dataset.email;
-                if (name.includes(q) || email.includes(q)) {
-                    item.style.display = '';
-                    found = true;
-                } else item.style.display = 'none';
-            });
-            notFound.style.display = found ? 'none' : '';
-        });
-    });
-    // --- Dynamic Field Inputs ---
-    function toggleFieldInputs() {
-        const type = document.getElementById("fieldType").value;
-        const container = document.getElementById("dynamicFields");
-        container.innerHTML = "";
-        if (type === "TEXT")
-            container.innerHTML =
-            `<label class="form-label">Default Text</label><input type="text" class="form-control" placeholder="Enter default text">`;
-        else if (type === "NUMERIC")
-            container.innerHTML =
-            `<label class="form-label">Default Number</label><input type="number" class="form-control" placeholder="Enter number">`;
-        else if (type === "TRUE_FALSE")
-            container.innerHTML =
-            `<div class="form-check"><input type="checkbox" class="form-check-input" id="trueFalse"><label class="form-check-label" for="trueFalse">Default: True</label></div>`;
-        else if (type === "AREA")
-            container.innerHTML =
-            `<label class="form-label">Length</label><input type="number" class="form-control mb-2" placeholder="Enter length"><label class="form-label">Width</label><input type="number" class="form-control" placeholder="Enter width">`;
-        else if (type === "DROPDOWN")
-            container.innerHTML =
-            `<label class="form-label">Dropdown Options</label><div id="dropdownOptions"><input type="text" class="form-control mb-2" placeholder="Option 1"></div><button type="button" class="btn btn-sm btn-outline-primary" onclick="addDropdownOption()">+ Add Option</button>`;
-    }
-
-    function addDropdownOption() {
-        const optionsDiv = document.getElementById("dropdownOptions");
-        const input = document.createElement("input");
-        input.type = "text";
-        input.className = "form-control mb-2";
-        input.placeholder = "New option";
-        optionsDiv.appendChild(input);
-    }
-    window.onload = toggleFieldInputs;
-    // --- ADD SECTION INTRODUCTION LOGIC ---
-</script>
-<script>
-    // 📸 When camera box clicked — trigger hidden file input
+    // ========== FILE UPLOAD BOX ==========
     const uploadBox = document.getElementById("uploadBox");
     const fileInput = document.getElementById("fileInput");
-    uploadBox.addEventListener("click", () => {
-        fileInput.click();
-    });
-    // 🖼️ Show selected file name or preview
-    function handleFileChange(input) {
-        if (input.files && input.files[0]) {
-            const fileName = input.files[0].name;
-            uploadBox.querySelector("span").textContent = fileName;
-            uploadBox.style.color = "green"; // keep green after upload
-        }
+
+    if (uploadBox && fileInput) {
+        uploadBox.addEventListener("click", () => fileInput.click());
+        fileInput.addEventListener("change", () => {
+            if (fileInput.files && fileInput.files[0]) {
+                const fileName = fileInput.files[0].name;
+                uploadBox.querySelector("span").textContent = fileName;
+                uploadBox.style.color = "green";
+            }
+        });
     }
 
+    // ========== DYNAMIC LINE ITEM CREATION ==========
     function createLineItemForm() {
         const div = document.createElement('div');
         div.classList.add('mb-4', 'pt-2', 'rounded', 'position-relative');
         div.innerHTML = `
-        <div class="row">
-            <div class="col-md-6">
-                <label> Product / Service</label>
-                <input type="text" class="form-control mb-2" placeholder="Name">
-                <textarea class="form-control" placeholder="Description"></textarea>
-            </div>
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-4">
-                        <label> Qty.</label>
-                        <input type="number" class="form-control text-center" value="1">
-                    </div>
-                    <div class="col-md-4">
-                        <label> Unit Price</label>
-                        <input type="text" class="form-control text-center" value="₹0.00">
-                    </div>
-                    <div class="col-md-4">
-                        <label> Total</label>
-                        <input type="text" class="form-control text-center" value="₹0.00">
-                    </div>
-                    <div class="col-md-4 mt-2">
-                        <div class="border rounded text-center uploadBox"
-                             style="height: 55px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: green;">
-                            <i class="fa-regular fa-camera" style="font-size: 18px;"></i>
-                            <span class="ms-2" style="font-size: 0.9em;"></span>
-                            <input type="file" class="fileInput" style="display: none;" onchange="handleFileChange(this)">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Product / Service</label>
+                    <input type="text" class="form-control mb-2" placeholder="Name">
+                    <textarea class="form-control" placeholder="Description"></textarea>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Qty.</label>
+                            <input type="number" class="form-control text-center" value="1">
+                        </div>
+                        <div class="col-md-4">
+                            <label>Unit Price</label>
+                            <input type="text" class="form-control text-center" value="₹0.00">
+                        </div>
+                        <div class="col-md-4">
+                            <label>Total</label>
+                            <input type="text" class="form-control text-center" value="₹0.00">
+                        </div>
+                        <div class="col-md-4 mt-2">
+                            <div class="border rounded text-center uploadBox"
+                                style="height: 55px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: green;">
+                                <i class="fa-regular fa-camera" style="font-size: 18px;"></i>
+                                <span class="ms-2" style="font-size: 0.9em;"></span>
+                                <input type="file" class="fileInput" style="display: none;">
+                            </div>
+                        </div>
+                        <div class="col-md-8 text-end">
+                            <button type="button" class="btn btn-outline-danger btn-sm end-0 m-2 removeBtn">Delete</button>
                         </div>
                     </div>
-                    <div class="col-md-8 text-end">
-                            <!-- Remove Button -->
-        <button type="button" class="btn btn-outline-danger btn-sm end-0 m-2 removeBtn">Delete</button>
-    
-                    </div>
                 </div>
-            </div>
-        </div>
-    `;
-        // Remove button functionality
-        div.querySelector('.removeBtn').addEventListener('click', function() {
-            div.remove();
-        });
+            </div>`;
+        div.querySelector('.removeBtn').addEventListener('click', () => div.remove());
         return div;
     }
-    document.getElementById('addLineItemBtn').addEventListener('click', function() {
-        document.getElementById('lineItemsContainer').appendChild(createLineItemForm());
-    });
-    document.getElementById('addOptionalLineItemBtn').addEventListener('click', function() {
-        document.getElementById('lineItemsContainer').appendChild(createLineItemForm());
-    });
-    document.getElementById('addTextBtn').addEventListener('click', function() {
-        document.getElementById('lineItemsContainer').appendChild(createLineItemForm());
-    });
-    // File input handler
-    function handleFileChange(input) {
-        const fileName = input.files[0] ? .name || '';
-        const span = input.closest('.uploadBox').querySelector('span');
-        span.textContent = fileName;
-    }
-    // Optional: make the upload box clickable
-    document.addEventListener('click', function(e) {
-        if (e.target.closest('.uploadBox')) {
-            e.target.closest('.uploadBox').querySelector('.fileInput').click();
+
+    const container = document.getElementById('lineItemsContainer');
+    const addBtns = ['addLineItemBtn', 'addOptionalLineItemBtn', 'addTextBtn'];
+    addBtns.forEach(id => {
+        const btn = document.getElementById(id);
+        if (btn && container) {
+            btn.addEventListener('click', () => container.appendChild(createLineItemForm()));
         }
     });
+
+    // Make file input clickable for dynamic boxes
+    document.addEventListener('click', (e) => {
+        const box = e.target.closest('.uploadBox');
+        if (box) {
+            const input = box.querySelector('.fileInput');
+            if (input) input.click();
+        }
+    });
+
+});
 </script>
+
 @endpush
