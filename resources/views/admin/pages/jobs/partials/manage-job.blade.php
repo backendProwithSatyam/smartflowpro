@@ -18,17 +18,18 @@
 </div> --}}
 
 <div class="card-no-data">
-<div class="card">
-    <div class="text-center py-5 card-middle">
-        <img src="/img/job.jpg" alt="" height="200px">
-              <i class="fas fa-clipboard-list" style="font-size: 55px"></i>
-        <h3 class="card-heading">Create winning jobs</h3>
-        <p>Build Residential Cleaning quotes in seconds with tailored descriptions and line items that will help you win
-            work.</p>
-        <a href="{{ route('jobs.create') }}" class="btn btn-custom">
-            <i class="fas fa-plus-circle me-1"></i>
-            Create Your First Job
-        </a>
+    <div class="card">
+        <div class="text-center py-5 card-middle">
+            <img src="/img/job.jpg" alt="" height="200px">
+            <i class="fas fa-clipboard-list" style="font-size: 55px"></i>
+            <h3 class="card-heading">Create winning jobs</h3>
+            <p>Build Residential Cleaning quotes in seconds with tailored descriptions and line items that will help you
+                win
+                work.</p>
+            <a href="{{ route('jobs.create') }}" class="btn btn-custom">
+                <i class="fas fa-plus-circle me-1"></i>
+                Create Your First Job
+            </a>
+        </div>
     </div>
-</div>
 </div>

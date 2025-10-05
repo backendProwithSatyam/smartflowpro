@@ -22,7 +22,7 @@
                 </div>
             </div>
                 <ul class="navbar-item flex-row ms-lg-auto ms-0 action-area">
-            <li class="nav-item theme-toggle-item">
+            {{-- <li class="nav-item theme-toggle-item">
                 <a href="javascript:void(0);" class="nav-link theme-toggle">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -43,7 +43,7 @@
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
                 </a>
-            </li>
+            </li> --}}
             <li class="nav-item dropdown user-profile-dropdown  order-lg-0 order-1">
                 <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

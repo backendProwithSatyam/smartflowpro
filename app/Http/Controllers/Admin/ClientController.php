@@ -14,15 +14,19 @@ class ClientController extends Controller
     public function index()
     {
         $clients = Client::with('addresses')->where('user_id', Auth::id())->paginate(10);
+        // dd($clients);
+        if($clients->isEmpty()){
+            return view('admin.pages.client.partials.noclient');
+        }
         return view('admin.pages.client.index', compact('clients'));
     }
 
-public function show(Client $client)
-{
-    $client->load(['addresses', 'properties']); // addresses aur properties dono
-    return view('admin.pages.client.view_client', compact('client'));
-    // return view('admin.pages.client.view_client', compact('client'));
-}
+    public function show(Client $client)
+    {
+        $client->load(['addresses', 'properties']); // addresses aur properties dono
+        return view('admin.pages.client.view_client', compact('client'));
+        // return view('admin.pages.client.view_client', compact('client'));
+    }
 
 
 
@@ -183,8 +187,6 @@ public function show(Client $client)
     public function destroy(Client $client)
     {
         $client->delete();
-        return redirect()->route('clients.index')->with('success', 'Client deleted successfully!');
+        return response()->json(['status' => true, 'message' => 'Deleted Successfully.']);
     }
-
- 
 }
