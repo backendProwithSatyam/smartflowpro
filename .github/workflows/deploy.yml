@@ -23,7 +23,7 @@ jobs:
 
       - name: Deploy Code to AWS
         run: |
-          ssh ${{ secrets.AWS_USER }}@${{ secrets.AWS_HOST }} << 'EOF'
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.AWS_USER }}@${{ secrets.AWS_HOST }} << 'EOF'
             cd /var/www/smartflowpro
             git pull origin main
             composer install --no-interaction --prefer-dist --optimize-autoloader
