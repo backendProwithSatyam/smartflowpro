@@ -2,9 +2,38 @@
 @push('styles')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
     <style>
+           .card{
+       box-shadow: none;
+       border:none;
+        }
+      .invoice-form h3{
+                margin-bottom: 24px;
+    font-size: 36px;
+    font-family: Jobber Pro,Poppins,Helvetica,Arial,sans-serif;
+    font-weight: 800;
+    line-height: 2.5rem;
+    color: #032b3a;
+        }
+        .invoice-form h5{
+     font-weight: 700;
+     font-size: 20px;
+     color:#032b3a;
+     }
+     .card-headerTitle{
+    font-family: Inter,Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    font-size:26px !important;
+    line-height: 1.75rem;
+    -webkit-font-smoothing: antialiased;
+    color: #032b3a;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+     }
         .invoice-form {
+                 border-top: 5px solid #225c8c !important;
             max-width: 1200px;
             margin: 0 auto;
+            border:1px solid #cccc;
         }
 
         .client-details {
@@ -190,12 +219,12 @@
 
 @section('content')
 <div class="container mt-4">
-    <div class="invoice-form">
+    <div class="invoice-form card">
         <form id="invoiceForm" enctype="multipart/form-data">
             @csrf
 
             <!-- Header Section -->
-            <div class="card mb-4">
+            <div class="mb-4">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-8">
@@ -336,7 +365,7 @@
             <!-- Internal Notes -->
             <div class="card mb-4">
                 <div class="card-body">
-                    <h5 class="fw-bold mb-3">Internal notes</h5>
+                    <h5 class="fw-bold mb-3 card-headerTitle">Internal notes</h5>
                     <p class="text-muted small">Internal notes will only be seen by your team</p>
                     <div class="mb-3">
                         <label class="form-label">Note details</label>

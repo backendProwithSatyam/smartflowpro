@@ -477,7 +477,6 @@
     <div class="quote-form container my-4 shadow-sm p-3">
         <form id="quoteForm" enctype="multipart/form-data">
             @csrf
-
             <!-- Header -->
             <div class="row border-bottom pb-3 mb-4">
                 <div class="col-md-8">
@@ -502,16 +501,20 @@
                         <a href="#" class="change-btn" id="changeQuoteBtn">Change</a>
                     </div>
 
-                    <div class="d-flex justify-content-between border-bottom pb-2 pt-2 align-items-center">
-                        <label class="form-label small fw-semibold">Rate opportunity</label>
-                        <span class="text-warning fs-5">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                        </span>
-                    </div>
+                  <div class="d-flex justify-content-between border-bottom pb-2 pt-2 align-items-center">
+  <label class="form-label small fw-semibold">Rate opportunity</label>
+  <span class="text-warning fs-5 rating-stars">
+    <i class="fa-regular fa-star" data-value="1"></i>
+    <i class="fa-regular fa-star" data-value="2"></i>
+    <i class="fa-regular fa-star" data-value="3"></i>
+    <i class="fa-regular fa-star" data-value="4"></i>
+    <i class="fa-regular fa-star" data-value="5"></i>
+  </span>
+</div>
+
+<!-- (Optional hidden input to store rating value) -->
+<input type="hidden" id="ratingValue" name="ratingValue" value="0">
+
                     <div class="border-bottom pb-2 pt-2 d-flex justify-content-between align-items-center">
                         <label class="form-label small fw-semibold">Salesperson</label>
                         <div class="d-flex align-items-center gap-2">
@@ -711,11 +714,15 @@
                 <h3 class="fw-bold">Internal notes</h3>
                 <p class="text-muted small">Internal notes will only be seen by your team</p>
                 <textarea class="form-control mb-2" rows="3" placeholder="Note details"></textarea>
-                <div class="border border-dashed p-3 text-center rounded">
-                    Drag your files here or
-                    <a href="#" class="fw-semibold text-success">Select a File</a>
-                    <input type="file" class="d-none" id="fileInput">
-                </div>
+             <div id="dropZone" 
+     class="border border-dashed p-3 text-center rounded position-relative" 
+     style="cursor:pointer;">
+  Drag your files here or 
+  <a href="#" class="fw-semibold text-success">Select a File</a>
+  <input type="file" class="d-none" id="fileInput" multiple>
+</div>
+
+<div id="fileList" class="mt-2 small text-muted"></div>
                 <div class="form-check form-check-inline mt-2">
                     <input class="form-check-input" type="checkbox" checked> Jobs
                 </div>
@@ -1316,5 +1323,114 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 </script>
+<script>
+$(document).ready(function () {
 
+  const $dropZone = $("#dropZone");
+  const $fileInput = $("#fileInput");
+  const $fileList = $("#fileList");
+
+  // Click anywhere on drop zone
+  $dropZone.on("click", function () {
+    $fileInput.click();
+  });
+
+  // On file selection
+  $fileInput.on("change", function (e) {
+    showFiles(e.target.files);
+  });
+
+  // Drag & Drop effects
+  $dropZone.on("dragover", function (e) {
+    e.preventDefault();
+    $(this).addClass("border-success bg-white");
+  });
+
+  $dropZone.on("dragleave", function () {
+    $(this).removeClass("border-success bg-white");
+  });
+
+  // On file drop
+  $dropZone.on("drop", function (e) {
+    e.preventDefault();
+    $(this).removeClass("border-success bg-white");
+    const files = e.originalEvent.dataTransfer.files;
+    showFiles(files);
+  });
+
+  // Display selected files (simulate upload)
+  function showFiles(files) {
+    $fileList.empty();
+
+    $.each(files, function (i, file) {
+      const sizeKB = Math.round(file.size / 1024);
+      const fileItem = $(`
+        <div class="border rounded p-2 mb-1 bg-white text-start">
+          <strong>${file.name}</strong> (${sizeKB} KB)
+          <div class="progress mt-1" style="height:6px; background:#eee;">
+            <div class="progress-bar" style="width:0%; background:#28a745;"></div>
+          </div>
+        </div>
+      `);
+      $fileList.append(fileItem);
+
+      // Fake upload progress animation
+      let progress = 0;
+      const progressBar = fileItem.find(".progress-bar");
+      const interval = setInterval(() => {
+        progress += 10;
+        progressBar.css("width", progress + "%");
+        if (progress >= 100) {
+          clearInterval(interval);
+          progressBar.css("background", "#198754");
+        }
+      }, 150);
+    });
+  }
+
+});
+</script>
+<script>
+    $(document).ready(function() {
+    // ⭐ Dynamic Rating Logic
+    $(".rating-stars i").on("click", function() {
+        const value = $(this).data("value");
+        $("#ratingValue").val(value); // store selected rating
+        
+        // Update stars dynamically
+        $(".rating-stars i").each(function() {
+            if ($(this).data("value") <= value) {
+                $(this).removeClass("fa-regular").addClass("fa-solid");
+            } else {
+                $(this).removeClass("fa-solid").addClass("fa-regular");
+            }
+        });
+    });
+
+    // Optional: Hover effect (preview before clicking)
+    $(".rating-stars i").hover(
+        function() {
+            const value = $(this).data("value");
+            $(".rating-stars i").each(function() {
+                if ($(this).data("value") <= value) {
+                    $(this).addClass("fa-solid");
+                } else {
+                    $(this).removeClass("fa-solid").addClass("fa-regular");
+                }
+            });
+        },
+        function() {
+            const selected = $("#ratingValue").val();
+            $(".rating-stars i").each(function() {
+                if ($(this).data("value") <= selected) {
+                    $(this).addClass("fa-solid");
+                } else {
+                    $(this).removeClass("fa-solid").addClass("fa-regular");
+                }
+            });
+        }
+    );
+});
+
+</script>
 @endpush
