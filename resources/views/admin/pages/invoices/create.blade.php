@@ -526,17 +526,24 @@
                     <i class="bi bi-x"></i>
                 </button>
                 <div class="row">
-                    <div class="col-md-6">
-                        <label class="form-label">Name</label>
-                        <div class="position-relative">
-                            <input type="text" name="line_items[${lineItemCount}][name]" class="form-control" 
-                                   placeholder="Select or enter service name" required
-                                   onfocus="showServiceOptions(this)" onblur="hideServiceOptions(this)">
-                            <div class="service-options" id="serviceOptions_${lineItemCount}" style="display: none;">
-                                ${serviceOptions.map(option => `<div class="service-option" onclick="selectService('${option}', this)">${option}</div>`).join('')}
-                            </div>
-                        </div>
-                    </div>
+                 <div class="col-md-6">
+    <label class="form-label">Name</label>
+    <div class="position-relative">
+        <input type="text" name="line_items[${lineItemCount}][name]" class="form-control" 
+               placeholder="Select or enter service name" required
+               onclick="toggleOptions(this)">
+        <div class="service-options" id="serviceOptions_${lineItemCount}" style="display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; border: 1px solid #ccc; z-index: 10;">
+            ${serviceOptions.map(option => `
+                <div class="service-option" onclick="selectService('${option}', this)" style="padding: 5px; cursor: pointer;">
+                    ${option}
+                </div>
+            `).join('')}
+        </div>
+    </div>
+</div>
+
+
+
                     <div class="col-md-6">
                         <label class="form-label">Description</label>
                         <textarea name="line_items[${lineItemCount}][description]" class="form-control" rows="2"></textarea>
@@ -583,6 +590,19 @@
         
         lineItemsContainer.insertAdjacentHTML('beforeend', lineItemHtml);
     }
+    
+function toggleOptions(input) {
+    const optionsDiv = input.nextElementSibling;
+    optionsDiv.style.display = optionsDiv.style.display === 'block' ? 'none' : 'block';
+}
+
+function selectService(option, element) {
+    const input = element.closest('.position-relative').querySelector('input');
+    input.value = option; // Fill input
+    element.parentElement.style.display = 'none'; // Hide options
+}
+
+
 
     function showServiceOptions(input) {
         const options = input.parentElement.querySelector('.service-options');

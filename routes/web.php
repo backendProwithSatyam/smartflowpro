@@ -57,6 +57,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('requests', RequestController::class);
     Route::patch('requests/{request}/status', [RequestController::class, 'updateStatus'])->name('requests.update-status');
     Route::resource('quotes', QuoteController::class);
+
+
+
     Route::resource('invoices', InvoiceController::class);
     Route::get('invoices/create-for-client/{client}', [InvoiceController::class, 'createForClient'])->name('invoices.create-for-client');
     Route::patch('invoices/{invoice}/status', [InvoiceController::class, 'updateStatus'])->name('invoices.update-status');
