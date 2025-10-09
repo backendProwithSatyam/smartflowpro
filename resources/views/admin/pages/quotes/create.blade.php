@@ -113,10 +113,7 @@
     }
 
     .summary-section {
-        background: #f8f9fa;
-        border-radius: 8px;
-        padding: 20px;
-        margin-top: 20px;
+        padding-left: 10px;
     }
 
     .summary-row {
@@ -525,11 +522,15 @@
     .client-row i {
         flex-shrink: 0;
     }
+
     .form-label {
-    font-weight: 600;
-    color: #1a1a1a;
-    margin-bottom: 0.5rem;
-}
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 0.5rem;
+    }
+    .quote-form{
+        padding: 18px !important;
+    }
 </style>
 
 @endpush
@@ -572,16 +573,24 @@
 
                             <input type="hidden" name="client_id" id="client_id">
                         </div>
-                        <div class="col-md-8">
-                            <div class="mt-3">
-                                <label class="form-label">Title</label>
-                                <input type="text" name="title" class="form-control" placeholder="Enter quote title"
-                                    required>
-                                <div class="error-message" id="title-error"></div>
+                        <div  style="border-bottom: 5px solid; /* Border thickness */
+                                           border-image: linear-gradient(to bottom, white, #8080805c) 1;;
+                                      padding-left:5px;padding-right:5px;
+                                        ">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="mt-3">
+                                    <label class="form-label">Title</label>
+                                    <input type="text" name="title" class="form-control" placeholder="Enter quote title"
+                                        required>
+                                    <div class="error-message" id="title-error"></div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card" style="border-left:1px solid #000; border-radius:0;">
+                              <div class="col-md-4">
+                            <div class="card" style="border-left: 5px solid; /* Border thickness */
+                                            border-image: linear-gradient(to bottom, white, #8080805c) 1;;
+                                        padding: 20px;
+                                        ">
                                 <div class="card-body">
                                     <h6 class="fw-bold mb-3">Quote details</h6>
 
@@ -627,6 +636,18 @@
                                 </div>
                             </div>
                         </div>
+                        </div>
+                       </div>
+                      
+                    </div>
+
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="fw-bold mb-3">Product / Service</h5>
+                    <div id="lineItems">
+                        <!-- Line items will be added here dynamically -->
                     </div>
 
                 </div>
@@ -634,55 +655,55 @@
 
             <!-- Product/Service Section -->
             <div class="row">
-                <div class="col-lg-6"></div>
-                <div class="col-lg-6"></div>
-            </div>
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="fw-bold mb-3">Product / Service</h5>
-                    <div id="lineItems">
-                        <!-- Line items will be added here dynamically -->
-                    </div>
-
-                    <div class="d-flex gap-2 mt-3">
-                        <button type="button" class="btn btn-success" onclick="addLineItem('product')">
-                            <i class="bi bi-plus"></i> Add Line Item
-                        </button>
-                        <button type="button" class="btn btn-outline-custom btn-sm" onclick="addLineItem('optional')">
-                            <i class="bi bi-plus"></i> Add Optional Line Item
-                        </button>
-                        <button type="button" class="btn btn-outline-custom btn-sm" onclick="addLineItem('text')">
-                            <i class="bi bi-plus"></i> Add Text
-                        </button>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex gap-2">
+                                <button type="button" class="btn btn-success" onclick="addLineItem('product')">
+                                    <i class="bi bi-plus"></i> Add Line Item
+                                </button>
+                                <button type="button" class="btn btn-outline-custom btn-sm"
+                                    onclick="addLineItem('optional')">
+                                    <i class="bi bi-plus"></i> Add Optional Line Item
+                                </button>
+                                <button type="button" class="btn btn-outline-custom btn-sm"
+                                    onclick="addLineItem('text')">
+                                    <i class="bi bi-plus"></i> Add Text
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Summary Section -->
-            <div class="card mb-4">
-                <div class="card-body">
-                    <div class="summary-section">
-                        <div class="summary-row">
-                            <span>Subtotal</span>
-                            <span id="subtotal">$0.00</span>
-                        </div>
-                        <div class="summary-row">
-                            <span>Discount <a href="#" onclick="addDiscount()">Add Discount</a></span>
-                            <span id="discount">$0.00</span>
-                        </div>
-                        <div class="summary-row">
-                            <span>Tax <a href="#" onclick="addTax()">Add Tax</a></span>
-                            <span id="tax">$0.00</span>
-                        </div>
-                        <div class="summary-row">
-                            <span>Required deposit <a href="#" onclick="addDeposit()">Add Required Deposit</a></span>
-                            <span id="deposit">$0.00</span>
-                        </div>
-                        <div class="summary-row total">
-                            <span>Total</span>
-                            <span id="total">$0.00</span>
+                <div class="col-lg-6">
+                    <!-- Summary Section -->
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="summary-section">
+                                <div class="summary-row">
+                                    <span>Subtotal</span>
+                                    <span id="subtotal">$0.00</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Discount <a href="#" onclick="addDiscount()">Add Discount</a></span>
+                                    <span id="discount">$0.00</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Tax <a href="#" onclick="addTax()">Add Tax</a></span>
+                                    <span id="tax">$0.00</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Required deposit <a href="#" onclick="addDeposit()">Add Required
+                                            Deposit</a></span>
+                                    <span id="deposit">$0.00</span>
+                                </div>
+                                <div class="summary-row total">
+                                    <span>Total</span>
+                                    <span id="total">$0.00</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
 
@@ -875,7 +896,7 @@
                 required = false;
                 break;
         }
-       const lineItemHtml = `
+        const lineItemHtml = `
 <div class="line-item" data-type="${type}" data-required="${required}">
     <div class="line-item-type ${typeClass}">${typeText}</div>
     <button type="button" class="remove-line-item" onclick="removeLineItem(this)">
@@ -933,7 +954,6 @@
     <input type="hidden" name="line_items[${lineItemCount}][required]" value="${required === true ? 1 : 0}">
 </div>
 `;
-
         lineItemsContainer.insertAdjacentHTML('beforeend', lineItemHtml);
     }
 
