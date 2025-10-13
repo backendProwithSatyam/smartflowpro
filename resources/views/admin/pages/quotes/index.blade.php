@@ -62,10 +62,6 @@
          color: #111827;
          padding:10px 40px;
     }
-    .card{
-        border: none;
-        box-shadow: none
-    }
 
         .btn-primary-custom {
             background-color: #388523;
@@ -83,7 +79,61 @@
             color: white;
         }
 
+.custom-bullets{
+    margin: 0;
+    padding: 0;
+    padding-left:20px;
+}
+/* Marker (bullet) styling */
+.custom-bullets li::marker {
+  font-size: 20px;        /* 👈 bullet size thoda bada */
+}
 
+/* Alag-alag bullet colors */
+.custom-bullets li.draft::marker {
+  color: gray;
+}
+.custom-bullets li.awaiting::marker {
+  color: orange;
+}
+.custom-bullets li.changes::marker {
+  color: red;
+}
+.custom-bullets li.approved::marker {
+  color: green;
+}
+ h2{
+    font-family: Jobber Pro, Poppins, Helvetica, Arial, sans-serif;
+    font-weight: 900;
+        color: hsl(197, 90%, 12%);
+ }
+.quote_title{
+    font-family:Inter, Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.card{
+        flex: 1 1 100%;
+    container-type: inline-size;
+    min-width: 200px;
+    max-width: 340px;
+    height: 100%;
+}
+
+.custom-bullets li {
+  margin: 2px 0;    /* top-bottom gap ko kam karein */
+  padding: 0;       /* inner padding remove */ /* font size adjust kar sakte ho */
+  line-height: 1.2; /* line height kam karne ke liye */
+}
+.count{
+    padding-top: 26px;
+}
+.count span{
+    font-family: Inter, Helvetica, Arial, sans-serif;
+    font-weight: 700;
+        font-size: 21px;
+}
     </style>
 @endpush
 
@@ -91,13 +141,69 @@
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <h2 class="mb-0">Quotes</h2>
+            <h2>Quotes</h2>
             <p class="text-muted mb-0">Manage your quotes and estimates</p>
         </div>
         <a href="{{ route('quotes.create') }}" class="btn btn-primary-custom">
             <i class="bi bi-plus-circle me-1"></i>
             New Quote
         </a>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card shadow-none">
+                <div class="card-body">
+                 
+                    <span class="quote_title">Overview</span>
+                <ul class="custom-bullets">
+  <li class="draft">Draft</li>
+  <li class="awaiting">Awaiting response</li>
+  <li class="changes">Changes requested</li>
+  <li class="approved">Approved</li>
+</ul>
+
+                    {{-- <h4>{{ $clients->count() ?? 0 }}</h4> --}}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-none">
+                <div class="card-body">
+                    <span class="quote_title">Conversion rate</span><br/>
+                    <small>Past 30 days</small>
+                    <div class="count">
+                    <span>0%</span>
+                    </div>
+                   
+                    {{-- <h4>{{ $clients->count() ?? 0 }}</h4> --}}
+                    {{-- <span class="badge bg-secondary">0%</span> --}}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-none">
+                <div class="card-body">
+                       <span class="quote_title">Sent</span><br/>
+                         <small>Past 30 days</small>
+                    {{-- <h6 class="fw-bold">Total new clients (YTD)</h6>
+                    <h4>{{ $clients->count() ?? 0 }}</h4> --}}
+                      <div class="count">
+                    <span>0%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-none">
+                <div class="card-body">
+                   <span class="quote_title">Converted</span><br/>
+                    <small>Past 30 days</small>
+                      <div class="count">
+                    <span>0%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     @if(session('success'))
@@ -114,22 +220,22 @@
         </div>
     @endif
 
-    <div class="card">
-        <div class="card-body">
+    <div class="row">
+        <div class="col-lg-12">
             @if($quotes->count() > 0)
                 <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table class="table">
                         <thead>
                             <tr>
-                                <th>Quote #</th>
-                                <th>Client</th>
-                                <th>Title</th>
-                                <th>Rate</th>
-                                <th>Total</th>
-                                <th>Status</th>
-                                <th>Salesperson</th>
-                                <th>Created</th>
-                                <th class="text-end">Actions</th>
+                                <th scope="col">Quote #</th>
+                                <th scope="col">Client</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Rate</th>
+                                <th scope="col">Total</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Salesperson</th>
+                                <th scope="col">Created</th>
+                                <th scope="col" class="text-end">Actions</th>
                             </tr>
                         </thead>
                         <tbody>

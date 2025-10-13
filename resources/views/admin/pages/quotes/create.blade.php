@@ -528,8 +528,31 @@
         color: #1a1a1a;
         margin-bottom: 0.5rem;
     }
-    .quote-form{
-        padding: 18px !important;
+
+    .quote-form {
+        padding-top: 0px !important;
+        padding: 25px !important;
+    }
+
+    /* .summary-row span:first-child {
+        font-weight: 500;
+    }
+    .
+    }
+    .summary-row a:hover {
+        text-decoration: underline;
+    } */
+    .bi {
+        font-size: 19px;
+    }
+      .upload-wrapper {
+        cursor: pointer;
+        background: #f8f9fa;
+        transition: all 0.3s ease;
+    }
+    .upload-wrapper:hover {
+        background: #eef4ff;
+        border-color: #007bff;
     }
 </style>
 
@@ -573,74 +596,111 @@
 
                             <input type="hidden" name="client_id" id="client_id">
                         </div>
-                        <div  style="border-bottom: 5px solid; /* Border thickness */
+                        <div style="border-bottom: 5px solid; /* Border thickness */
                                            border-image: linear-gradient(to bottom, white, #8080805c) 1;;
                                       padding-left:5px;padding-right:5px;
                                         ">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <div class="mt-3">
-                                    <label class="form-label">Title</label>
-                                    <input type="text" name="title" class="form-control" placeholder="Enter quote title"
-                                        required>
-                                    <div class="error-message" id="title-error"></div>
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="mt-3">
+                                        <label class="form-label">Job title</label>
+                                        <input type="text" name="title" class="form-control" placeholder="Title"
+                                            required>
+                                        <div class="error-message" id="title-error"></div>
+                                    </div>
                                 </div>
-                            </div>
-                              <div class="col-md-4">
-                            <div class="card" style="border-left: 5px solid; /* Border thickness */
+                                <div class="col-md-5">
+                                    <div class="card" style="border-left: 5px solid; /* Border thickness */
                                             border-image: linear-gradient(to bottom, white, #8080805c) 1;;
                                         padding: 20px;
                                         ">
-                                <div class="card-body">
-                                    <h6 class="fw-bold mb-3">Quote details</h6>
+                                        <div class="card-body">
+                                            <h6 class="fw-bold mb-3">Quote details</h6>
 
-                                    <!-- Quote number inline -->
-                                    <div class="mb-3 d-flex align-items-center justify-content-between pb-2"
-                                        style="border-bottom:1px solid #cccccc;">
-                                        <label class="form-label mb-0 me-2">Quote number</label>
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span>#{{ $quoteNumber }}</span>
-                                            <button type="button" class="change-btn"
-                                                style="background:none; border:none;">Change</button>
+                                            <!-- Quote number inline -->
+                                            <div class="mb-3 d-flex align-items-center justify-content-between pb-2"
+                                                style="border-bottom:1px solid #cccccc;">
+                                                <label class="form-label mb-0 me-2">Quote number</label>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <span>#{{ $quoteNumber }}</span>
+                                                    <button type="button" class="change-btn"
+                                                        style="background:none; border:none;">Change</button>
+                                                </div>
+                                                <input type="hidden" name="quote_number" value="{{ $quoteNumber }}">
+                                            </div>
+
+                                            <!-- Rate opportunity inline -->
+                                            <div class="mb-3 d-flex align-items-center justify-content-between pb-2"
+                                                style="border-bottom:1px solid #cccccc;">
+                                                <label class="form-label mb-0 me-2">Rate opportunity</label>
+                                                <div class="d-flex align-items-center gap-1" id="rateStars"
+                                                    style="color:#FFD700">
+                                                    <i class="bi bi-star-fill" data-rating="1"></i>
+                                                    <i class="bi bi-star-fill" data-rating="2"></i>
+                                                    <i class="bi bi-star-fill" data-rating="3"></i>
+                                                    <i class="bi bi-star" data-rating="4"></i>
+                                                    <i class="bi bi-star" data-rating="5"></i>
+                                                </div>
+                                                <input type="hidden" name="rate_opportunity" value="3">
+                                            </div>
+
+                                            <!-- Salesperson inline -->
+                                            <div class="mb-3 d-flex align-items-center justify-content-between pb-2"
+                                                style="border-bottom:1px solid #cccccc;">
+                                                <label class="form-label mb-0 me-2">Salesperson</label>
+                                                <select name="salesperson" class="form-control w-auto">
+                                                    <option value="">Select salesperson...</option>
+                                                    @foreach($users as $user)
+                                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
                                         </div>
-                                        <input type="hidden" name="quote_number" value="{{ $quoteNumber }}">
                                     </div>
-
-                                    <!-- Rate opportunity inline -->
-                                    <div class="mb-3 d-flex align-items-center justify-content-between pb-2"
-                                        style="border-bottom:1px solid #cccccc;">
-                                        <label class="form-label mb-0 me-2">Rate opportunity</label>
-                                        <div class="d-flex align-items-center gap-1" id="rateStars"
-                                            style="color:#FFD700">
-                                            <i class="bi bi-star-fill" data-rating="1"></i>
-                                            <i class="bi bi-star-fill" data-rating="2"></i>
-                                            <i class="bi bi-star-fill" data-rating="3"></i>
-                                            <i class="bi bi-star" data-rating="4"></i>
-                                            <i class="bi bi-star" data-rating="5"></i>
-                                        </div>
-                                        <input type="hidden" name="rate_opportunity" value="3">
-                                    </div>
-
-                                    <!-- Salesperson inline -->
-                                    <div class="mb-3 d-flex align-items-center justify-content-between pb-2"
-                                        style="border-bottom:1px solid #cccccc;">
-                                        <label class="form-label mb-0 me-2">Salesperson</label>
-                                        <select name="salesperson" class="form-control w-auto">
-                                            <option value="">Select salesperson...</option>
-                                            @foreach($users as $user)
-                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
-                        </div>
-                       </div>
-                      
+
                     </div>
 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 m-3">
+                      <button id="addSectionBtn" class="btn">
+                        <i class="fa-solid fa-plus"></i> Add Section <span class="btn">Introduction</span>
+                    </button>
+                </div>
+                <div class="col-lg-12 m-3">
+                  
+                    <!-- Hidden Section (Initially Hidden) -->
+<div id="sectionContainer" class="card shadow-sm p-3" style="display: none;">
+    <h4 class="mb-3">Introduction</h4>
+       <div class="mb-3">
+            <label class="form-label">Upload Image</label>
+            <div class="upload-wrapper text-center p-4 border-dashed rounded">
+                <input type="file" id="sectionImage" accept="image/*" hidden>
+                 <button class="btn btn-outline-custom">Upload Image</button>
+                <p class="mb-2 mt-2" id="uploadText">Select or drag an image here to upload</p>
+                <p>AVIF, GIF, JPEG, PNG, WEBP, up to 25MB each</p>
+                <small class="text-muted" id="fileName">No file selected</small>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="sectionTitle" class="form-label">Title</label>
+            <input type="text" class="form-control" id="sectionTitle" placeholder="Enter title">
+        </div>
+
+        <div class="mb-3">
+            <label for="sectionDesc" class="form-label">Description</label>
+            <textarea class="form-control" id="sectionDesc" rows="3" placeholder="Enter description"></textarea>
+        </div>
+
+     
+
+</div>
                 </div>
             </div>
             <div class="card">
@@ -678,6 +738,41 @@
                     <!-- Summary Section -->
                     <div class="card">
                         <div class="card-body">
+
+                            <div class="summary-section">
+                                <div
+                                    class="summary-row d-flex justify-content-between align-items-center py-2 border-bottom">
+                                    <span>Subtotal</span>
+                                    <span id="subtotal">₹0.00</span>
+                                </div>
+                                <div
+                                    class="summary-row d-flex justify-content-between align-items-center py-2 border-bottom">
+                                    <span>Discount <a href="#" data-bs-toggle="modal" data-bs-target="#discountModal"
+                                            class="change-btn">Add Discount</a></span>
+                                    <span id="discount">₹0.00</span>
+                                </div>
+                                <div
+                                    class="summary-row d-flex justify-content-between align-items-center py-2 border-bottom">
+                                    <span>Tax <a href="#" data-bs-toggle="modal" data-bs-target="#taxModal"
+                                            class="change-btn">Add Tax</a></span>
+                                    <span id="tax">₹0.00</span>
+                                </div>
+                                <div
+                                    class="summary-row d-flex justify-content-between align-items-center py-2 border-bottom">
+                                    <span>Required deposit <a href="#" data-bs-toggle="modal"
+                                            data-bs-target="#depositModal" class="change-btn">Add Required
+                                            Deposit</a></span>
+                                    <span id="deposit">₹0.00</span>
+                                </div>
+                                <div class="summary-row d-flex justify-content-between align-items-center py-3 fw-bold">
+                                    <span>Total</span>
+                                    <span id="total">₹0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- <div class="card">
+                        <div class="card-body">
                             <div class="summary-section">
                                 <div class="summary-row">
                                     <span>Subtotal</span>
@@ -702,7 +797,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>
@@ -747,7 +842,51 @@
         </form>
     </div>
 </div>
-
+<div class="modal fade" id="tagModal" tabindex="-1">
+    <div class="modal-dialog">
+        <form id="tagForm" method="POST">
+            @csrf
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Tags</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="client_id" id="tagClientId">
+                    <input id="tagInput" name="tags" placeholder="Type tags and press Enter" />
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save Tags</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Sub Total -->
+<div class="modal fade" id="valueModal" tabindex="-1">
+    <div class="modal-dialog">
+        <form id="valueForm" method="POST">
+            @csrf
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Add Value</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="valueInput" class="form-label">Enter amount (₹)</label>
+                        <input type="number" id="valueInput" class="form-control" placeholder="0.00" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="saveValue()"
+                        data-bs-dismiss="modal">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 <!-- Fixed Bottom Bar -->
 <div class="bottom-bar fixed-bottom-bar">
     <div class="container d-flex justify-content-end gap-2">
@@ -822,9 +961,126 @@
         </div>
     </div>
 </div>
+
+<!-- Discount Modal -->
+<div class="modal fade" id="discountModal" tabindex="-1">
+    <div class="modal-dialog">
+        <form id="discountForm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Discount</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="discountValue" class="form-label">Enter Discount (₹)</label>
+                    <input type="number" class="form-control" id="discountValue" min="0" step="0.01" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-custom-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Apply</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Tax Modal -->
+<div class="modal fade" id="taxModal" tabindex="-1">
+    <div class="modal-dialog">
+        <form id="taxForm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Tax</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="taxValue" class="form-label">Enter Tax (₹)</label>
+                    <input type="number" class="form-control" id="taxValue" min="0" step="0.01" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-custom-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Apply</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Deposit Modal -->
+<div class="modal fade" id="depositModal" tabindex="-1">
+    <div class="modal-dialog">
+        <form id="depositForm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Required Deposit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="depositValue" class="form-label">Enter Deposit (₹)</label>
+                    <input type="number" class="form-control" id="depositValue" min="0" step="0.01" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-custom-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Apply</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 @endsection
 
 @push('scripts')
+<!-- jQuery Script -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+      $(document).ready(function() {
+        // Toggle section div on button click
+        $("#addSectionBtn").click(function() {
+            $("#sectionContainer").slideToggle(300);
+        });
+
+        // Form submit event (optional)
+        $("#sectionForm").on("submit", function(e) {
+            e.preventDefault();
+            const title = $("#sectionTitle").val();
+            const desc = $("#sectionDesc").val();
+            alert("Section Saved!\nTitle: " + title + "\nDescription: " + desc);
+        });
+    });
+</script>
+<script>
+    let subtotal = 0;
+    let discount = 0;
+    let tax = 0;
+    let deposit = 0;
+    const updateTotal = () => {
+        const total = subtotal - discount + tax + deposit;
+        document.getElementById('total').textContent = `₹${total.toFixed(2)}`;
+    };
+    document.getElementById('discountForm').addEventListener('submit', e => {
+        e.preventDefault();
+        discount = parseFloat(document.getElementById('discountValue').value) || 0;
+        document.getElementById('discount').textContent = `₹${discount.toFixed(2)}`;
+        updateTotal();
+        bootstrap.Modal.getInstance(document.getElementById('discountModal')).hide();
+    });
+    document.getElementById('taxForm').addEventListener('submit', e => {
+        e.preventDefault();
+        tax = parseFloat(document.getElementById('taxValue').value) || 0;
+        document.getElementById('tax').textContent = `₹${tax.toFixed(2)}`;
+        updateTotal();
+        bootstrap.Modal.getInstance(document.getElementById('taxModal')).hide();
+    });
+    document.getElementById('depositForm').addEventListener('submit', e => {
+        e.preventDefault();
+        deposit = parseFloat(document.getElementById('depositValue').value) || 0;
+        document.getElementById('deposit').textContent = `₹${deposit.toFixed(2)}`;
+        updateTotal();
+        bootstrap.Modal.getInstance(document.getElementById('depositModal')).hide();
+    });
+</script>
+
 <script>
     let lineItemCount = 0;
     let selectedFiles = [];
